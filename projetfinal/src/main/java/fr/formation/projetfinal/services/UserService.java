@@ -25,7 +25,6 @@ public class UserService implements IUserService {
 		userJpaRepository.save(user);
 	}
 
-
 	private static void encodePassword(User user) {
 		String rawPassword = user.getPassWord();
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -48,7 +47,5 @@ public class UserService implements IUserService {
 		Optional<User> optional = userJpaRepository.findById(id);
 		return optional.get();
 	}
-
-	
 
 }

@@ -9,32 +9,28 @@ import fr.formation.projetfinal.Principal;
 import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.repositories.IUserJpaRepository;
 
-
 @Service
-public class LoginService implements ILoginService{
+public class LoginService implements ILoginService {
 
-	
-	private  final IUserJpaRepository userJpaRepository;
-	
-	
+	private final IUserJpaRepository userJpaRepository;
+
 	@Autowired
 	protected LoginService(IUserJpaRepository userJpaRepository) {
 		this.userJpaRepository = userJpaRepository;
 	}
 
-	
 	@Override
-	public UserDetails loadUserByUsername(String username){
+	public UserDetails loadUserByUsername(String username) {
 		User user = userJpaRepository.findByEmail(username);
 		Principal principal;
-		
+
 		if (null == user) {
-			throw new UsernameNotFoundException("L'username " + username +" n'est pas reconnu");
-		}else {
+			throw new UsernameNotFoundException("L'username " + username + " n'est pas reconnu");
+		} else {
 			principal = new Principal(user);
 		}
 		return principal;
-		
+
 	}
 
 }

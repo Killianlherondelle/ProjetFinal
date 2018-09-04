@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.services.IUserService;
 
@@ -36,7 +35,11 @@ public class UserController extends BaseController {
 	public String create(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
 		if (validateAndSave(user, result)) {
 			model.addAttribute("user", new User());
+<<<<<<< HEAD
 			return "redirect:/welcome/login";
+=======
+			return "redirect:/security/login";
+>>>>>>> branch 'develop' of https://github.com/Killianlherondelle/ProjetFinal
 		}
 		populateModel(model);
 		return "userCreate";
@@ -70,6 +73,7 @@ public class UserController extends BaseController {
 	}
 
 	private void validate(User user, BindingResult result) {
+<<<<<<< HEAD
 		if (!userService.validateEmail(user)) {
 		    result.rejectValue("email", "error.entities.user.duplicateEmail");
 		}
@@ -78,5 +82,12 @@ public class UserController extends BaseController {
 
 	private void populateModel(Model model) {
 		model.addAttribute("roles", User.Role.values());
+=======
+
+	}
+
+	private void populateModel(Model model) {
+
+>>>>>>> branch 'develop' of https://github.com/Killianlherondelle/ProjetFinal
 	}
 }
