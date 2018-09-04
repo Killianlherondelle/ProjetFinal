@@ -14,7 +14,7 @@
 			<h1 class="text-primary">
 				<spring:message code="login.title" />
 			</h1>
-			<form method="POST" action="<c:url value="/login" />">
+			<form method="POST" action="<c:url value="/welcome" />">
 <%-- 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
 				<div class="form-group">
 					<label for="username"><spring:message code="login.username" /></label>
@@ -29,5 +29,6 @@
 			</form>
 		</section>
 	</div>
+	<c:import url="footerNav.jsp" />
 </body>
 </html>
