@@ -30,7 +30,7 @@ public class User implements Serializable {
 
 	@NotNull(message = "{error.commons.required}")
 	@Column(length = 20, nullable = false)
-	private String name;
+	private String lastName;
 
 	@NotNull(message = "{error.commons.required}")
 	@Column(length = 20, nullable = false)
@@ -64,12 +64,12 @@ public class User implements Serializable {
 		this.passWord = passWord;
 	}
 
-	public String getName() {
-		return name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getFirstName() {
@@ -107,7 +107,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", passWord=" + passWord + ", name=" + name + ", firstName="
+		return "User [id=" + id + ", email=" + email + ", passWord=" + passWord + ", lastName=" + lastName + ", firstName="
 				+ firstName + "]";
 	}
 
