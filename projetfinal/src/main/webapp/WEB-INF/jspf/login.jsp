@@ -30,6 +30,6 @@
 			</form>
 		</section>
 	</div>
-	<c:import url="footerNav.jsp" />
+<%-- 	<c:import url="footerNav.jsp" /> --%>
 </body>
 </html>
