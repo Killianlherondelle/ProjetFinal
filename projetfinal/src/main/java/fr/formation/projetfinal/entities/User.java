@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.sun.javafx.css.converters.BooleanConverter;
+
 /**
  * @author Atlantic
  *
@@ -30,11 +32,32 @@ public class User implements Serializable {
 
 	@NotNull(message = "{error.commons.required}")
 	@Column(length = 20, nullable = false)
-	private String name;
+	private String lastName;
 
 	@NotNull(message = "{error.commons.required}")
 	@Column(length = 20, nullable = false)
 	private String firstName;
+
+	@NotNull(message = "{error.commons.required}")
+	@Enumerated(EnumType.STRING)
+	@Column(length = 10, nullable = false)
+	private Role role = Role.ROLE_PO;
+
+	@Convert(converter = BooleanConverter.class)
+	@Column(length = 1, nullable = false)
+	public boolean accountNonExpired = true;
+
+	@Convert(converter = BooleanConverter.class)
+	@Column(length = 1, nullable = false)
+	public boolean accountNonLocked = true;
+
+	@Convert(converter = BooleanConverter.class)
+	@Column(length = 1, nullable = false)
+	public boolean credentialsNonExpired = true;
+
+	@Convert(converter = BooleanConverter.class)
+	@Column(length = 1, nullable = false)
+	public boolean enabled = true;
 
 	public User() {
 		// Empty constructor
@@ -64,12 +87,12 @@ public class User implements Serializable {
 		this.passWord = passWord;
 	}
 
-	public String getName() {
-		return name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getFirstName() {
@@ -78,6 +101,46 @@ public class User implements Serializable {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public boolean isAccountNonExpired() {
+		return accountNonExpired;
+	}
+
+	public void setAccountNonExpired(boolean flag) {
+		this.accountNonExpired = flag;
+	}
+
+	public boolean isAccountNonLocked() {
+		return accountNonLocked;
+	}
+
+	public void setAccountNonLocked(boolean flag) {
+		this.accountNonLocked = flag;
+	}
+
+	public boolean isCredentialsNonExpired() {
+		return credentialsNonExpired;
+	}
+
+	public void setCredentialsNonExpired(boolean flag) {
+		this.credentialsNonExpired = flag;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean flag) {
+		this.enabled = flag;
 	}
 
 	@Override
@@ -107,8 +170,10 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", passWord=" + passWord + ", name=" + name + ", firstName="
-				+ firstName + "]";
+		return "User [id=" + id + ", email=" + email + ", passWord=" + passWord + ", lastName=" + lastName
+				+ ", firstName=" + firstName + ", role=" + role + ", accountNonExpired=" + accountNonExpired
+				+ ", accountNonLocked=" + accountNonLocked + ", credentialsNonExpired=" + credentialsNonExpired
+				+ ", enabled=" + enabled + "]";
 	}
 
 	public static enum Role {
