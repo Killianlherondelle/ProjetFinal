@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html lang="${pageContext.response.locale.language}">
-<head>
-<title><spring:message code="login.title" /></title>
+
+<title><spring:message code="login.title" /></title> 
 <c:import url="commonsHead.jsp" />
 </head>
 <body>
@@ -30,6 +29,5 @@
 			</form>
 		</section>
 	</div>
-<%-- 	<c:import url="footerNav.jsp" /> --%>
 </body>
 </html>
