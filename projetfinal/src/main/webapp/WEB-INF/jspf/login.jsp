@@ -14,8 +14,8 @@
 			<h1 class="text-primary">
 				<spring:message code="login.title" />
 			</h1>
-			<form method="POST" action="<c:url value="/welcome" />">
-<%-- 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
+			<form method="POST" action="<c:url value="/login" />">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="form-group">
 					<label for="username"><spring:message code="login.username" /></label>
 					<input type="text" name="username" value="" maxlength="255" class="form-control">

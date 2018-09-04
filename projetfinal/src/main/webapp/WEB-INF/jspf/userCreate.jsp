@@ -14,18 +14,18 @@
 		<section>
 			<h1 class="text-primary"><spring:message code="entities.user.create.title" /></h1>
 			<form:form action="create" method="POST" modelAttribute="user">
-<%-- 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="form-row">
 					
 					<div class="form-group col">
-						<form:label path="firstname"><spring:message code="entities.user.firstname" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
-						<form:input path="firstname" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" />
-						<form:errors element="div" path="firstname" cssClass="invalid-feedback" />
+						<form:label path="firstName"><spring:message code="entities.user.firstname" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
+						<form:input path="firstName" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" />
+						<form:errors element="div" path="firstName" cssClass="invalid-feedback" />
 					</div>
 					<div class="form-group col">
-						<form:label path="lastname"><spring:message code="entities.user.lastname" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
-						<form:input path="lastname" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" />
-						<form:errors element="div" path="lastname" cssClass="invalid-feedback" />
+						<form:label path="lastName"><spring:message code="entities.user.lastname" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
+						<form:input path="lastName" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" />
+						<form:errors element="div" path="lastName" cssClass="invalid-feedback" />
 					</div>
 				</div>
 				<div class="form-row">
@@ -41,9 +41,9 @@
 						</div>
 					</div>
 					<div class="form-group col">
-						<form:label path="password"><spring:message code="entities.user.password" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
-						<form:password path="password" maxlength="100" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" />
-						<form:errors element="div" path="password" cssClass="invalid-feedback" />
+						<form:label path="passWord"><spring:message code="entities.user.password" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
+						<form:password path="passWord" maxlength="100" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" />
+						<form:errors element="div" path="passWord" cssClass="invalid-feedback" />
 					</div>
 					<div class="form-group col">
 						<form:label path="role"><spring:message code="entities.user.role" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>

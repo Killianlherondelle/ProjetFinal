@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.sun.javafx.css.converters.BooleanConverter;
+
 
 /**
  * @author Atlantic
@@ -27,7 +27,7 @@ public class User implements Serializable {
 	private String email;
 
 	@NotNull(message = "{error.commons.required}")
-	@Column(length = 20, nullable = false)
+	@Column(length = 100, nullable = false)
 	private String passWord;
 
 	@NotNull(message = "{error.commons.required}")
