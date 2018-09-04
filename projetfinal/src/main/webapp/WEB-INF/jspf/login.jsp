@@ -6,10 +6,10 @@
 <html lang="${pageContext.response.locale.language}">
 <head>
 <title><spring:message code="login.title" /></title>
-<%-- <c:import url="commonsHead.jsp" /> --%>
+<c:import url="commonsHead.jsp" />
 </head>
 <body>
-	<c:import url="headerNav.jsp" />
+<%-- 	<c:import url="headerNav.jsp" /> --%>
 	<div class="container-fluid">
 		<section>
 			<h1 class="text-primary">
