@@ -15,7 +15,8 @@
 
 	<div class="container-fluid">
 		<h1 class="text-primary">
-			<spring:message code="home.welcome.courses" />
+		TEST
+<%-- 			<spring:message code="home.welcome.user" /> --%>
 		</h1>
 		<div class="table-responsive">
 			<table class="table table-hover">
@@ -34,7 +35,10 @@
 								<td>${user.email}</td> 
 								<td>${user.role}</td>
 								<td>${user.firm}</td>
-								<td><a href="<c:url value="/user/toCreate?id=${user.id}" />"><spring:message code="home.welcome.courses.update" /></a></td>
+								<td>
+								TEST
+<%-- 								<a href="<c:url value="/user/toCreate?id=${user.id}" />"> --%>
+							</a></td>
 							</tr>
 						</c:forEach>
 				</tbody>

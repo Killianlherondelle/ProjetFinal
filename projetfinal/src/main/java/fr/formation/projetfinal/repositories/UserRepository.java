@@ -20,15 +20,15 @@ public class UserRepository extends BaseRepository implements IUserRepository {
 	public List<UserDTO> findAllAsDTO(AppLanguage lang) {
 		StringBuilder queryBuilder = new StringBuilder(
 			"select new fr.formation.projetfinal.dto.UserDTO(u.id, u.lastName, u.email,u.role,u.firm, u.");
-//		String nameCol = "frenchName as userName";
+//		String nameCol = "frenchName as courseName, t.";
 //		String typeNameCol = "frenchName";
 //		if (lang.isEnglish()) {
-//		    nameCol = "englishName as userName, t.";
+//		    nameCol = "englishName as courseName, t.";
 //		    typeNameCol = "englishName";
 //		}
 //		queryBuilder.append(nameCol);
 //		queryBuilder.append(typeNameCol);
-//		queryBuilder.append(") from user c join c.type t");
+//		queryBuilder.append(") from User u join c.firstName f");
 //		queryBuilder.append(" order by t.code, courseName");
 		Query query = em.createQuery(queryBuilder.toString());
 		return query.getResultList();
