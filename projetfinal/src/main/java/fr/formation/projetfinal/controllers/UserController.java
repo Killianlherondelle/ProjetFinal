@@ -36,7 +36,7 @@ public class UserController extends BaseController {
 		if (validateAndSave(user, result)) {
 			model.addAttribute("user", new User());
 
-			return "redirect:/welcome/login";
+			return "redirect:/security/login";
 
 		}
 		populateModel(model);
