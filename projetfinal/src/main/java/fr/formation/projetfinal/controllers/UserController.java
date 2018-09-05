@@ -1,5 +1,8 @@
 package fr.formation.projetfinal.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import fr.formation.projetfinal.entities.Country;
+import fr.formation.projetfinal.entities.Firm;
 import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.services.IUserService;
 
@@ -33,13 +39,12 @@ public class UserController extends BaseController {
 
 	@PostMapping("/create")
 	public String create(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+		populateModel(model);
 		if (validateAndSave(user, result)) {
 			model.addAttribute("user", new User());
-
 			return "redirect:/security/login";
 
 		}
-		populateModel(model);
 		return "userCreate";
 	}
 
@@ -71,15 +76,23 @@ public class UserController extends BaseController {
 	}
 
 	private void validate(User user, BindingResult result) {
-
+		System.out.println("validate");
 		if (!userService.validateEmail(user)) {
-		    result.rejectValue("email", "error.entities.user.duplicateEmail");
+			result.rejectValue("email", "error.entities.user.duplicateEmail");
 		}
-
 	}
 
 	private void populateModel(Model model) {
-		model.addAttribute("roles", User.Role.values());
+		// Firm firm = new Firm();
+		// Country country = new Country();
+		// firm.setCountry(country);
+		// firm.setCode("001");
+		// List<Firm> firms = new ArrayList<Firm>();
+		// firms.add(firm);
+		// boolean active = true;
 
+		// model.addAttribute("active", active);
+		// model.addAttribute("firms", firms);
+		model.addAttribute("roles", User.Role.values());
 	}
 }

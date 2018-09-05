@@ -40,12 +40,12 @@ public class User implements Serializable {
 	private String firstName;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@NotEmpty(message = "{error.commons.multiple.required}")
+	// @NotEmpty(message = "{error.commons.multiple.required}")
 	private List<Firm> firms;
 
 	@Convert(converter = BooleanConverter.class)
 	@Column(length = 1, nullable = false)
-	private boolean active;
+	private boolean active = true;
 
 	@NotNull(message = "{error.commons.required}")
 	@Enumerated(EnumType.STRING)
