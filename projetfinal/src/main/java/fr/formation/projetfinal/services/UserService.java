@@ -27,19 +27,16 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void save(UserCustomerDTO userDTO) {
-		User user = new User();
-		// set get
-
+	public User save(User user) {
 		encodePassword(user);
-		// userJpaRepository.save(user);
+		return userJpaRepository.save(user);
 	}
-
+	
 	/*
 	 * TODO
 	 */
 	@Override
-	public void save(User userDTO) {
+	public void save(UserCustomerDTO userCustomerDTO) {
 		User user = new User();
 		// set get
 

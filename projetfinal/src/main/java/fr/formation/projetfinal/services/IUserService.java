@@ -9,9 +9,9 @@ import fr.formation.projetfinal.entities.User;
 
 public interface IUserService {
 
-	public void save(UserCustomerDTO user);
-
-	public void save(User user);
+	public User save(User user);
+	
+	public void save(UserCustomerDTO userCustomerDTO);
 
 	public boolean validateEmail(User user);
 
