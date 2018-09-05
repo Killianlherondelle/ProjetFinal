@@ -11,6 +11,10 @@ public interface IUserService {
 
 	public void save(UserCustomerDTO user);
 
+	public void save(User user);
+
+	public boolean validateEmail(User user);
+
 	public boolean validateEmail(UserCustomerDTO user);
 
 	public User findById(Long id);

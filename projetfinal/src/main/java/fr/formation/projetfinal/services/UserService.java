@@ -14,7 +14,6 @@ import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.repositories.IUserJpaRepository;
 import fr.formation.projetfinal.repositories.IUserRepository;
 
-
 @Service
 public class UserService implements IUserService {
 
@@ -31,7 +30,19 @@ public class UserService implements IUserService {
 	public void save(UserCustomerDTO userDTO) {
 		User user = new User();
 		// set get
-		
+
+		encodePassword(user);
+		// userJpaRepository.save(user);
+	}
+
+	/*
+	 * TODO
+	 */
+	@Override
+	public void save(User userDTO) {
+		User user = new User();
+		// set get
+
 		encodePassword(user);
 		// userJpaRepository.save(user);
 	}
@@ -45,6 +56,16 @@ public class UserService implements IUserService {
 
 	@Override
 	public boolean validateEmail(UserCustomerDTO user) {
+		Long id = user.getId();
+		String email = user.getEmail();
+		if (null == id) { // create
+			return !userJpaRepository.existsByEmailIgnoreCase(email);
+		}
+		return !userJpaRepository.existsByEmailIgnoreCaseAndIdNot(email, id); // update
+	}
+
+	@Override
+	public boolean validateEmail(User user) {
 		Long id = user.getId();
 		String email = user.getEmail();
 		if (null == id) { // create
