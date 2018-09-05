@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.formation.projetfinal.AppLanguage;
+import fr.formation.projetfinal.dto.UserCustomerDTO;
 import fr.formation.projetfinal.dto.UserDTO;
 import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.repositories.IUserJpaRepository;
@@ -27,9 +28,12 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void save(User user) {
+	public void save(UserCustomerDTO userDTO) {
+		User user = new User();
+		// set get
+		
 		encodePassword(user);
-		userJpaRepository.save(user);
+		// userJpaRepository.save(user);
 	}
 
 	private static void encodePassword(User user) {
@@ -40,7 +44,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean validateEmail(User user) {
+	public boolean validateEmail(UserCustomerDTO user) {
 		Long id = user.getId();
 		String email = user.getEmail();
 		if (null == id) { // create

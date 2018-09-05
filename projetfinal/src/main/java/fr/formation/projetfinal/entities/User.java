@@ -23,19 +23,18 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull(message = "{error.commons.required}")
 	@Column(length = 50, nullable = false, unique = true)
 	private String email;
 
-	@NotNull(message = "{error.commons.required}")
+	
 	@Column(length = 100, nullable = false)
 	private String passWord;
 
-	@NotNull(message = "{error.commons.required}")
+	
 	@Column(length = 20, nullable = false)
 	private String lastName;
 
-	@NotNull(message = "{error.commons.required}")
+	
 	@Column(length = 20, nullable = false)
 	private String firstName;
 

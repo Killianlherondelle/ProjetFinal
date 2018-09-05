@@ -36,7 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	http.authorizeRequests()
 		.antMatchers("/security/login", "/users/toCreate",
 			"/users/create", "/static/**")
-		.permitAll().anyRequest().authenticated().and().formLogin()
+		.permitAll()
+		//.anyRequest().authenticated()
+		.and().formLogin()
 		.loginPage("/security/login").loginProcessingUrl("/login")
 		// en cas de succès de login, dirige vers:
 		.defaultSuccessUrl("/users/toCreate", true)

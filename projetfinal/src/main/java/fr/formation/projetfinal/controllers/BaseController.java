@@ -4,7 +4,10 @@ import java.beans.PropertyEditorSupport;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
+
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 import fr.formation.projetfinal.AppLanguage;
 import fr.formation.projetfinal.Principal;
+import fr.formation.projetfinal.entities.Firm;
 import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.entities.User.Role;
 
@@ -88,5 +92,19 @@ public abstract class BaseController {
 				return DateTimeFormatter.ofPattern(datePattern).format(value);
 			}
 		});
+		binder.registerCustomEditor(List.class, "firms",
+				new CustomCollectionEditor(List.class) {
+
+				    @Override
+				    protected Object convertElement(Object element) {
+					Long id = null;
+					if (element instanceof String) {
+					    id = Long.valueOf((String) element);
+					} else if (element instanceof Long) {
+					    id = (Long) element;
+					}
+					return id != null ? new Firm(id) : null;
+				    }
+				});
 	}
 }

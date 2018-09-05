@@ -51,6 +51,10 @@ public class Firm implements Serializable {
 	public Firm() {
 		
 	}
+	
+	public Firm(Long id) {
+		setId(id);
+	}
 
 	public Long getId() {
 		return id;
