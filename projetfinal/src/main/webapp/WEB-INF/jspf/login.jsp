@@ -8,7 +8,7 @@
 <c:import url="commonsHead.jsp" />
 </head>
 <body>
-<%-- 	<c:import url="headerNav.jsp" /> --%>
+	<c:import url="headerNav.jsp" />
 	<div class="container-fluid">
 		<section>
 			<h1 class="text-primary">
