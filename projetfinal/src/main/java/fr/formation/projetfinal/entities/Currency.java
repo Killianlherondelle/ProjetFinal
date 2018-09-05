@@ -15,9 +15,8 @@ public class Currency implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2320958369532681701L;
-	
-	
+	private static final long serialVersionUID = 8709874898567637089L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
