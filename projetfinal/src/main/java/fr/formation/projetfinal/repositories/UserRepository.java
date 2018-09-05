@@ -1,0 +1,33 @@
+package fr.formation.projetfinal.repositories;
+
+import java.util.List;
+
+import javax.persistence.Query;
+
+import fr.formation.projetfinal.AppLanguage;
+import fr.formation.projetfinal.dto.UserDTO;
+
+public class UserRepository extends BaseRepository implements IUserRepository {
+
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UserDTO> findAllAsDTO(AppLanguage lang) {
+		StringBuilder queryBuilder = new StringBuilder(
+			"select new fr.formation.projetfinal.dto.UserDTO(c.id, c.lastName, c.email,c.role,c.firm, c.");
+		String nameCol = "frenchName as userName, t.";
+		String typeNameCol = "frenchName";
+		if (lang.isEnglish()) {
+		    nameCol = "englishName as userName, t.";
+		    typeNameCol = "englishName";
+		}
+		queryBuilder.append(nameCol);
+		queryBuilder.append(typeNameCol);
+//		queryBuilder.append(") from user c join c.type t");
+//		queryBuilder.append(" order by t.code, courseName");
+		Query query = em.createQuery(queryBuilder.toString());
+		return query.getResultList();
+	    }
+
+}

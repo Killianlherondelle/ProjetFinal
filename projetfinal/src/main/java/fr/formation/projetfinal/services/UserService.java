@@ -1,22 +1,29 @@
 package fr.formation.projetfinal.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import fr.formation.projetfinal.AppLanguage;
+import fr.formation.projetfinal.dto.UserDTO;
 import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.repositories.IUserJpaRepository;
+import fr.formation.projetfinal.repositories.IUserRepository;
+
 
 @Service
 public class UserService implements IUserService {
 
 	private final IUserJpaRepository userJpaRepository;
+	private final IUserRepository userRepository;
 
 	@Autowired
-	protected UserService(IUserJpaRepository userJpaRepository) {
+	protected UserService(IUserJpaRepository userJpaRepository, IUserRepository userRepository) {
 		this.userJpaRepository = userJpaRepository;
+		this.userRepository = userRepository;
 	}
 
 	@Override
@@ -46,6 +53,11 @@ public class UserService implements IUserService {
 	public User findById(Long id) {
 		Optional<User> optional = userJpaRepository.findById(id);
 		return optional.get();
+	}
+
+	@Override
+	public List<UserDTO> findAllAsDTO(AppLanguage lang) {
+		return userRepository.findAllAsDTO(lang);
 	}
 
 }
