@@ -14,11 +14,6 @@
 
 
 	<div class="container-fluid">
-		<section> <sec:authorize access="hasRole('ROLE_USER')">
-			<h5>Bonjour User</h5>
-		</sec:authorize>
-
-
 		<h1 class="text-primary">
 			<spring:message code="home.welcome.courses" />
 		</h1>
