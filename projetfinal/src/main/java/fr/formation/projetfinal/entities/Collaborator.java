@@ -35,7 +35,7 @@ public class Collaborator implements Serializable {
     private String firstname;
     
     @NotNull(message = "{error.commons.required}")
-    @Column(length = 1, nullable = false, unique = true)
+    @Column(length = 10, nullable = false, unique = true)
     private String email;
 
 	public Collaborator() {

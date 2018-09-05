@@ -12,9 +12,8 @@ import fr.formation.projetfinal.services.*;
 
 @Controller
 @RequestMapping("/list")
-public class ListUsersController extends BaseController{
-	
-	
+public class ListUsersController extends BaseController {
+
 	private final IUserService userService;
 
 	@Autowired
@@ -32,6 +31,7 @@ public class ListUsersController extends BaseController{
 
 	private void populateModel(Model model) {
 		List<UserDTO> users = userService.findAllAsDTO(getAppLanguage());
-		model.addAttribute("users", users);		
+		System.out.println(users);
+		model.addAttribute("users", users);
 	}
 }
