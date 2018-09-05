@@ -1,15 +1,16 @@
 package fr.formation.projetfinal.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
-
 /**
+ * User entity.
+ * 
  * @author Atlantic
- *
  */
 @Entity
 public class User implements Serializable {
@@ -38,9 +39,17 @@ public class User implements Serializable {
 	@Column(length = 20, nullable = false)
 	private String firstName;
 
+	@ManyToMany(fetch = FetchType.EAGER)
+	@NotEmpty(message = "{error.commons.multiple.required}")
+	private List<Firm> firms;
+
+	@Convert(converter = BooleanConverter.class)
+	@Column(length = 1, nullable = false)
+	private boolean active;
+
 	@NotNull(message = "{error.commons.required}")
 	@Enumerated(EnumType.STRING)
-	@Column(length = 10, nullable = false)
+	@Column(length = 20, nullable = false)
 	private Role role = Role.ROLE_PO;
 
 	@Convert(converter = BooleanConverter.class)
@@ -111,6 +120,22 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
+	public List<Firm> getFirms() {
+		return firms;
+	}
+
+	public void setFirms(List<Firm> firms) {
+		this.firms = firms;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public boolean isAccountNonExpired() {
 		return accountNonExpired;
 	}
@@ -171,9 +196,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", passWord=" + passWord + ", lastName=" + lastName
-				+ ", firstName=" + firstName + ", role=" + role + ", accountNonExpired=" + accountNonExpired
-				+ ", accountNonLocked=" + accountNonLocked + ", credentialsNonExpired=" + credentialsNonExpired
-				+ ", enabled=" + enabled + "]";
+				+ ", firstName=" + firstName + ", active=" + active + ", role=" + role + "]";
 	}
 
 	public static enum Role {

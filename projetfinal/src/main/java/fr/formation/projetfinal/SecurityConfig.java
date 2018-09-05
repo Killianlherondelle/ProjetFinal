@@ -38,7 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/users/create", "/static/**")
 		.permitAll().anyRequest().authenticated().and().formLogin()
 		.loginPage("/security/login").loginProcessingUrl("/login")
+		// en cas de succès de login, dirige vers:
 		.defaultSuccessUrl("/users/toCreate", true)
+		// en cas d'échec d'authentification:
 		.failureUrl("/security/login?error=true").permitAll().and()
 		.logout().invalidateHttpSession(true)
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
