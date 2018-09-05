@@ -1,14 +1,17 @@
 package fr.formation.projetfinal.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Rating implements Serializable {
 
 	/**
@@ -26,7 +29,7 @@ public class Rating implements Serializable {
 	
 	@NotNull(message = "{error.commons.required}")
 	@Column(length = 10, nullable = false)
-	private Double valueRating;
+	private BigDecimal valueRating;
 
 	public Rating() {
 	
@@ -48,11 +51,11 @@ public class Rating implements Serializable {
 		this.code = code;
 	}
 
-	public Double getValueRating() {
+	public BigDecimal getValueRating() {
 		return valueRating;
 	}
 
-	public void setValueRating(Double valueRating) {
+	public void setValueRating(BigDecimal valueRating) {
 		this.valueRating = valueRating;
 	}
 
