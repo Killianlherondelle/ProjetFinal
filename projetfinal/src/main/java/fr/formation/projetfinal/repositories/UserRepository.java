@@ -4,9 +4,13 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import fr.formation.projetfinal.AppLanguage;
 import fr.formation.projetfinal.dto.UserDTO;
 
+
+@Repository
 public class UserRepository extends BaseRepository implements IUserRepository {
 
 
