@@ -7,7 +7,7 @@ import fr.formation.projetfinal.dto.FinancesTypeDTO;
 
 public interface IFinancesTypeService {
 
-	List<FinancesTypeDTO> findAllAsDTO(AppLanguage appLanguage);
+	public List<FinancesTypeDTO> findAllAsDTO(AppLanguage appLanguage);
 
 
 

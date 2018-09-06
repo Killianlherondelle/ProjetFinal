@@ -17,7 +17,7 @@ public class FinanceTypeRepository extends BaseRepository implements IFinanceTyp
 	@Override
 	public List<FinancesTypeDTO> findAllAsDTO(AppLanguage lang) {
 		StringBuilder queryBuilder = new StringBuilder(
-				"select new fr.formation.projetfinal.dto.FinancesTypeDTO(f.id, f.code) from Finances f");
+				"select new fr.formation.projetfinal.dto.FinancesTypeDTO(f.id, f.frenchName) from FinancesType f");
 		Query query = em.createQuery(queryBuilder.toString());
 		return query.getResultList();
 	}
