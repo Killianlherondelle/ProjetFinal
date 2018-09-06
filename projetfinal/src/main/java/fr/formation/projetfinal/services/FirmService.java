@@ -12,27 +12,25 @@ import fr.formation.projetfinal.repositories.IFirmJpaRepository;
 import fr.formation.projetfinal.repositories.IFirmRepository;
 
 @Service
-public class FirmService implements IFirmService{
+public class FirmService implements IFirmService {
 
 	private final IFirmRepository firmRepository;
 	private final IFirmJpaRepository firmJpaRepository;
-	
-    @Autowired
-    protected FirmService(IFirmRepository firmRepository,
-	    IFirmJpaRepository firmJpaRepository) {
-	this.firmRepository = firmRepository;
-	this.firmJpaRepository = firmJpaRepository;
-    }
 
-	
-	@Override
-    public List<FirmItemDTO> findAllAsDTO() {
-	return firmRepository.findAllAsDTO();
-    }
+	@Autowired
+	protected FirmService(IFirmRepository firmRepository, IFirmJpaRepository firmJpaRepository) {
+		this.firmRepository = firmRepository;
+		this.firmJpaRepository = firmJpaRepository;
+	}
 
 	@Override
-    public Firm findById(Long id) {
-	Optional<Firm> optional = firmJpaRepository.findById(id);
-	return optional.get();
-    }
+	public List<FirmItemDTO> findAllAsDTO() {
+		return firmRepository.findAllAsDTO();
+	}
+
+	@Override
+	public Firm findById(Long id) {
+		Optional<Firm> optional = firmJpaRepository.findById(id);
+		return optional.get();
+	}
 }

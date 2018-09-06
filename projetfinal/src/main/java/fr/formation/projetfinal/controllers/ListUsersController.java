@@ -19,19 +19,16 @@ public class ListUsersController extends BaseController {
 	@Autowired
 	protected ListUsersController(IUserService userService) {
 		this.userService = userService;
-		System.out.println("list/list");
 	}
 
 	@GetMapping("/list")
 	public String welcome(Model model) {
 		populateModel(model);
-		System.out.println("list/list");
 		return "ListUsers";
 	}
 
 	private void populateModel(Model model) {
 		List<UserDTO> users = userService.findAllAsDTO(getAppLanguage());
-		System.out.println(users);
 		model.addAttribute("users", users);
 	}
 }

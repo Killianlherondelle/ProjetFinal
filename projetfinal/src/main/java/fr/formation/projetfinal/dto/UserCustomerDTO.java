@@ -12,7 +12,7 @@ public class UserCustomerDTO {
 	private String email;
 	@NotNull(message = "{error.commons.required}")
 	private String password;
-	
+
 	private Long firmId;
 
 	public UserCustomerDTO() {
@@ -66,8 +66,5 @@ public class UserCustomerDTO {
 	public void setFirmId(Long firmId) {
 		this.firmId = firmId;
 	}
-	
-	
-	
-	
+
 }

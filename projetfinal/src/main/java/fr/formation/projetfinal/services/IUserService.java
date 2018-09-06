@@ -11,7 +11,7 @@ public interface IUserService {
 
 	public User save(User user);
 	
-	public void save(UserCustomerDTO userCustomerDTO);
+	public User save(UserCustomerDTO userCustomerDTO);
 
 	public boolean validateEmail(User user);
 

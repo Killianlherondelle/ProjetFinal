@@ -1,5 +1,6 @@
 package fr.formation.projetfinal.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,10 @@ import org.springframework.stereotype.Service;
 import fr.formation.projetfinal.AppLanguage;
 import fr.formation.projetfinal.dto.UserCustomerDTO;
 import fr.formation.projetfinal.dto.UserDTO;
+import fr.formation.projetfinal.entities.Firm;
 import fr.formation.projetfinal.entities.User;
+import fr.formation.projetfinal.entities.User.Role;
+import fr.formation.projetfinal.repositories.IFirmJpaRepository;
 import fr.formation.projetfinal.repositories.IUserJpaRepository;
 import fr.formation.projetfinal.repositories.IUserRepository;
 
@@ -19,11 +23,14 @@ public class UserService implements IUserService {
 
 	private final IUserJpaRepository userJpaRepository;
 	private final IUserRepository userRepository;
+//	private final IFirmJpaRepository fpaReirmJpository;
+	private final IFirmService firmService;
 
 	@Autowired
-	protected UserService(IUserJpaRepository userJpaRepository, IUserRepository userRepository) {
+	protected UserService(IUserJpaRepository userJpaRepository, IUserRepository userRepository, IFirmService firmService) {
 		this.userJpaRepository = userJpaRepository;
 		this.userRepository = userRepository;
+		this.firmService = firmService;
 	}
 
 	@Override
@@ -31,17 +38,33 @@ public class UserService implements IUserService {
 		encodePassword(user);
 		return userJpaRepository.save(user);
 	}
-	
+
 	/*
 	 * TODO
 	 */
 	@Override
-	public void save(UserCustomerDTO userCustomerDTO) {
+	public User save(UserCustomerDTO userCustomerDTO) {
+
+		String lastName = userCustomerDTO.getLastName();
+		String firstName = userCustomerDTO.getFirstName();
+		String email = userCustomerDTO.getEmail();
+		String password = userCustomerDTO.getPassword();
+		Long firmId = userCustomerDTO.getFirmId();// TODO
+
 		User user = new User();
-		// set get
+		user.setLastName(lastName);
+		user.setFirstName(firstName);
+		user.setEmail(email);
+		user.setPassWord(password);
+		user.setRole(Role.ROLE_CUSTOMER);
+		Firm firm = firmService.findById(firmId);
+		
+		List<Firm> firms = new ArrayList<Firm>();
+		firms.add(firm);
+		user.setFirms(firms);
 
 		encodePassword(user);
-		// userJpaRepository.save(user);
+		return userJpaRepository.save(user);
 	}
 
 	private static void encodePassword(User user) {
