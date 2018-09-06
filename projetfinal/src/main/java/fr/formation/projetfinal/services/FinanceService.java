@@ -1,25 +1,32 @@
 package fr.formation.projetfinal.services;
 
 import fr.formation.projetfinal.entities.Finances;
+import fr.formation.projetfinal.repositories.IFinanceJpaRepository;
+import fr.formation.projetfinal.repositories.IFinanceRepository;
 
 public class FinanceService implements IFinanceService {
 
-	@Override
-	public void save(Finances finance) {
-		// TODO Auto-generated method stub
-		
+	private IFinanceJpaRepository financeJpaRepository;
+	private final IFinanceRepository financeRepository;
+	
+	public FinanceService(IFinanceJpaRepository financeJpaRepository, IFinanceRepository financeRepository) {
+		this.financeJpaRepository = financeJpaRepository;
+		this.financeRepository = financeRepository;
 	}
 
+	@Override
+	public Finances save(Finances finance) {
+		return financeJpaRepository.save(finance);
+	}
+	
 	@Override
 	public boolean validateCode(Finances finance) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean validateFinanceType(Finances finance) {
-		// TODO Auto-generated method stub
-		return false;
+		Long id = finance.getId();
+		String code = finance.getCode();
+		if (null == id) { // create
+		    return !financeJpaRepository.existsByCodeIgnoreCase(code);
+		}
+		return !financeJpaRepository.existsByCodeIgnoreCaseAndIdNot(code, id);
 	}
 
 }

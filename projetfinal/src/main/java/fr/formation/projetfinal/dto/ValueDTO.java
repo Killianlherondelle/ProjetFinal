@@ -31,7 +31,4 @@ public class ValueDTO {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-	
-	
-
 }

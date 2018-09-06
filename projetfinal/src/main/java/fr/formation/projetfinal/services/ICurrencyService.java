@@ -7,6 +7,6 @@ import fr.formation.projetfinal.dto.currencyDTO;
 
 public interface ICurrencyService {
 
-	List<currencyDTO> findAllAsDTO(AppLanguage appLanguage);
+	public List<currencyDTO> findAllAsDTO(AppLanguage appLanguage);
 
 }

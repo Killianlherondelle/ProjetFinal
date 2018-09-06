@@ -9,12 +9,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.formation.projetfinal.AppLanguage;
+import fr.formation.projetfinal.dto.UserCollabDTO;
 import fr.formation.projetfinal.dto.UserCustomerDTO;
 import fr.formation.projetfinal.dto.UserDTO;
+import fr.formation.projetfinal.entities.Collaborator;
 import fr.formation.projetfinal.entities.Firm;
 import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.entities.User.Role;
-import fr.formation.projetfinal.repositories.IFirmJpaRepository;
 import fr.formation.projetfinal.repositories.IUserJpaRepository;
 import fr.formation.projetfinal.repositories.IUserRepository;
 
@@ -23,14 +24,17 @@ public class UserService implements IUserService {
 
 	private final IUserJpaRepository userJpaRepository;
 	private final IUserRepository userRepository;
-//	private final IFirmJpaRepository fpaReirmJpository;
+	// private final IFirmJpaRepository fpaReirmJpository;
 	private final IFirmService firmService;
+	private final ICollabService collabService;
 
 	@Autowired
-	protected UserService(IUserJpaRepository userJpaRepository, IUserRepository userRepository, IFirmService firmService) {
+	protected UserService(IUserJpaRepository userJpaRepository, IUserRepository userRepository,
+			IFirmService firmService, ICollabService collabService) {
 		this.userJpaRepository = userJpaRepository;
 		this.userRepository = userRepository;
 		this.firmService = firmService;
+		this.collabService = collabService;
 	}
 
 	@Override
@@ -39,9 +43,6 @@ public class UserService implements IUserService {
 		return userJpaRepository.save(user);
 	}
 
-	/*
-	 * TODO
-	 */
 	@Override
 	public User save(UserCustomerDTO userCustomerDTO) {
 
@@ -49,7 +50,7 @@ public class UserService implements IUserService {
 		String firstName = userCustomerDTO.getFirstName();
 		String email = userCustomerDTO.getEmail();
 		String password = userCustomerDTO.getPassword();
-		Long firmId = userCustomerDTO.getFirmId();// TODO
+		Long firmId = userCustomerDTO.getFirmId();
 
 		User user = new User();
 		user.setLastName(lastName);
@@ -58,11 +59,37 @@ public class UserService implements IUserService {
 		user.setPassWord(password);
 		user.setRole(Role.ROLE_CUSTOMER);
 		Firm firm = firmService.findById(firmId);
-		
+
 		List<Firm> firms = new ArrayList<Firm>();
 		firms.add(firm);
 		user.setFirms(firms);
 
+		encodePassword(user);
+		return userJpaRepository.save(user);
+	}
+
+	@Override
+	public User saveCollab(UserCollabDTO userCollabDTO) {
+		
+		Long collabId = userCollabDTO.getCollabId();
+		Collaborator collab = collabService.findById(collabId);
+		// via references:
+		String lastName = collab.getLastname();
+		String firstName = collab.getFirstname();
+		String email = collab.getEmail();
+		List<Firm> firms = collab.getFirms();
+		// via JSP:
+		Role role = userCollabDTO.getRole();
+		String password = userCollabDTO.getPassword();
+		
+		User user = new User();
+		user.setLastName(lastName);
+		user.setFirstName(firstName);
+		user.setEmail(email);
+		user.setFirms(firms);
+		user.setRole(role);
+		user.setPassWord(password);
+		
 		encodePassword(user);
 		return userJpaRepository.save(user);
 	}
@@ -75,7 +102,7 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean validateEmail(UserCustomerDTO user) {
+	public boolean validateEmail(User user) {
 		Long id = user.getId();
 		String email = user.getEmail();
 		if (null == id) { // create
@@ -85,9 +112,19 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public boolean validateEmail(User user) {
-		Long id = user.getId();
-		String email = user.getEmail();
+	public boolean validateEmail(UserCustomerDTO userCustomerDTO) {
+		Long id = userCustomerDTO.getId();
+		String email = userCustomerDTO.getEmail();
+		if (null == id) { // create
+			return !userJpaRepository.existsByEmailIgnoreCase(email);
+		}
+		return !userJpaRepository.existsByEmailIgnoreCaseAndIdNot(email, id); // update
+	}
+
+	@Override
+	public boolean validateCollabEmail(UserCollabDTO userCollabDTO) {
+		Long id = userCollabDTO.getCollabId();
+		String email = userCollabDTO.getEmail();
 		if (null == id) { // create
 			return !userJpaRepository.existsByEmailIgnoreCase(email);
 		}
