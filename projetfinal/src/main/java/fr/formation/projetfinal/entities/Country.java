@@ -28,7 +28,6 @@ public class Country implements Serializable {
 	@Column(length = 2, nullable = false, unique = true)
 	private String iso;
 	
-	
 	@ManyToOne
     @JoinColumn(nullable = false)
 	private Rating rating;
