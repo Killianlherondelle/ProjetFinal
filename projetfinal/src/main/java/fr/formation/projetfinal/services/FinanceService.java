@@ -1,9 +1,12 @@
 package fr.formation.projetfinal.services;
 
+import org.springframework.stereotype.Service;
+
 import fr.formation.projetfinal.entities.Finances;
 import fr.formation.projetfinal.repositories.IFinanceJpaRepository;
 import fr.formation.projetfinal.repositories.IFinanceRepository;
 
+@Service
 public class FinanceService implements IFinanceService {
 
 	private IFinanceJpaRepository financeJpaRepository;

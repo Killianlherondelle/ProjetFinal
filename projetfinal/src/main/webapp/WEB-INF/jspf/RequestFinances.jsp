@@ -15,30 +15,36 @@
 <c:import url="headerNav.jsp" />
 
 <div class="container">
+<div class="container-fluid">
+		<section>
+			<h1 class="text-primary"></h1>
+			<form:form action="create" method="POST" modelAttribute="finance">
+				<div class="form-row">
+					<div class="form-group col">
 
-  <form action="/action_page.php">
-    <div class="form-group">
-      <label for="usr">amount:</label>
-      <input type="text" class="form-control" id="usr" name="username">
-    </div>
-    <div class="form-group">
-      <label for="pwd">startDate:</label>
-      <input type="password" class="form-control" id="pwd" name="password">
-    </div>
-     <div class="form-group">
-      <label for="pwd">monthDuration:</label>
-      <input type="password" class="form-control" id="pwd" name="password">
-    </div>
-     <div class="form-group">
-      <label for="pwd">country:</label>
-      <input type="password" class="form-control" id="pwd" name="password">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+					<div class="form-group col">
+						<form:label path="currency.id"><spring:message code="entities.currency.type" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
+						<form:select path="currency.id" cssClass="form-control" cssErrorClass="form-control is-invalid">
+							<form:option value="0"><spring:message code="commons.forms.select" /></form:option>
+							<form:options items="${currencies}" itemValue="id" itemLabel="name" />
+						</form:select>
+						<form:errors element="div" path="currency.id" cssClass="invalid-feedback" />
+					</div>
+					
+					<div class="form-group col">
+						<form:label path="financeType.id"><spring:message code="entities.financeTypes.type" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
+						<form:select path="financeType.id" cssClass="form-control" cssErrorClass="form-control is-invalid">
+							<form:option value="0"><spring:message code="commons.forms.select" /></form:option>
+							<form:options items="${financeTypes}" itemValue="id" itemLabel="name" />
+						</form:select>
+						<form:errors element="div" path="financeType.id" cssClass="invalid-feedback" />
+					</div>
+	</div>
 </div>
-
-	
-	
+</form:form>
+</section>
+</div>
+</div>
 	
 	
 <c:import url="footerNav.jsp" />

@@ -3,10 +3,10 @@ package fr.formation.projetfinal.services;
 import java.util.List;
 
 import fr.formation.projetfinal.AppLanguage;
-import fr.formation.projetfinal.dto.currencyDTO;
+import fr.formation.projetfinal.dto.CurrencyDTO;
 
 public interface ICurrencyService {
 
-	public List<currencyDTO> findAllAsDTO(AppLanguage appLanguage);
+	public List<CurrencyDTO> findAllAsDTO(AppLanguage appLanguage);
 
 }

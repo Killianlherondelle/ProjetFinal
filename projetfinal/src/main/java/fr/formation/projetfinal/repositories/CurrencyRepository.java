@@ -4,19 +4,20 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import fr.formation.projetfinal.AppLanguage;
-import fr.formation.projetfinal.dto.currencyDTO;
+import org.springframework.stereotype.Repository;
 
+import fr.formation.projetfinal.AppLanguage;
+import fr.formation.projetfinal.dto.CurrencyDTO;
+
+@Repository
 public class CurrencyRepository extends BaseRepository implements ICurrencyRepository {
 	
 		@SuppressWarnings("unchecked")
 		@Override
-		public List<currencyDTO> findAllAsDTO(AppLanguage lang) {
+		public List<CurrencyDTO> findAllAsDTO(AppLanguage lang) {
 			StringBuilder queryBuilder = new StringBuilder(
-			"select new fr.formation.projetfinal.dto.currencyDTO(c.id, c.iso) from Currency c");
+					"select new fr.formation.projetfinal.dto.CurrencyDTO(c.id, c.iso) from Currency c");
 			Query query = em.createQuery(queryBuilder.toString());
 			return query.getResultList();
 		}
-	
-
 }

@@ -1,14 +1,16 @@
 package fr.formation.projetfinal.dto;
 
-public class currencyDTO {
+public class CurrencyDTO {
 	
 	 private Long id;
 	 private String name;
-	public currencyDTO() {
-		super();
+	 
+	 
+	public CurrencyDTO() {
+
 	}
-	public currencyDTO(Long id, String name) {
-		super();
+	public CurrencyDTO(Long id, String name) {
+
 		this.id = id;
 		this.name = name;
 	}
