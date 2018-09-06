@@ -42,6 +42,18 @@
 						<form:errors element="div" path="firmId" cssClass="invalid-feedback" />
 					</div>
 				</div>
+				<div class="form-row">
+				<div class="form-group col">
+						<form:label path="firstName"><spring:message code="entities.user.firstname" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
+						<form:input path="firstName" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" />
+						<form:errors element="div" path="firstName" cssClass="invalid-feedback" />
+					</div>
+					<div class="form-group col">
+						<form:label path="lastName"><spring:message code="entities.user.lastname" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
+						<form:input path="lastName" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" />
+						<form:errors element="div" path="lastName" cssClass="invalid-feedback" />
+					</div>
+					</div>
 				<button type="reset" class="btn btn-primary mb-3"><spring:message code="commons.forms.reset" /></button>
 				<form:button class="btn btn-primary mb-3"><spring:message code="commons.forms.save" /></form:button>
 			</form:form>
