@@ -22,7 +22,7 @@
 						<form:label path="collabId"><spring:message code="entities.user.listfirm" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
 						<form:select path="collabId" cssClass="form-control" cssErrorClass="form-control is-invalid">
 							<form:option value="0"><spring:message code="commons.forms.select" /></form:option>
-							<form:options items="${email}" itemValue="id" itemLabel="email" />
+							<form:options items="${emails}" itemValue="id" itemLabel="email" />
 						</form:select>
 						<form:errors element="div" path="collabId" cssClass="invalid-feedback" />
 					</div>
