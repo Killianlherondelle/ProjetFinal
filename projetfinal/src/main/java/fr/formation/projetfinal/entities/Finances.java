@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -46,14 +49,14 @@ public class Finances  implements Serializable {
     @Column(length = 1000, nullable = false)
 	private LocalDate startDate;
     
-    @NotNull(message = "{error.commons.required}")
-    @Column(length = 100, nullable = false)
+	@ManyToOne
+    @JoinColumn(nullable = false)
 	private FinancesType type;
     
 
     @NotNull(message = "{error.commons.required}")
     @Column(length = 100, nullable = false)
-	private LocalDate DateRecording;
+	private LocalDate dateRecording;
     
     public Finances() {
     }
@@ -65,7 +68,7 @@ public class Finances  implements Serializable {
 			@NotNull(message = "{error.commons.required}") int monthDuration,
 			@NotNull(message = "{error.commons.required}") LocalDate startDate, FinancesType type,
 			@NotNull(message = "{error.commons.required}") LocalDate dateRecording) {
-		super();
+		
 		this.id = id;
 		this.code = code;
 		this.amount = amount;
@@ -73,7 +76,7 @@ public class Finances  implements Serializable {
 		this.monthDuration = monthDuration;
 		this.startDate = startDate;
 		this.type = type;
-		DateRecording = dateRecording;
+		this.dateRecording = dateRecording;
 	}
 
 	public Long getId() {
@@ -133,11 +136,11 @@ public class Finances  implements Serializable {
 	}
 
 	public LocalDate getDateRecording() {
-		return DateRecording;
+		return dateRecording;
 	}
 
 	public void setDateRecording(LocalDate dateRecording) {
-		DateRecording = dateRecording;
+		this.dateRecording = dateRecording;
 	}
 
 	public static long getSerialversionuid() {
