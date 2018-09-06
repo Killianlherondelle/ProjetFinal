@@ -38,7 +38,7 @@ public class Finances  implements Serializable {
 	private BigDecimal amount;
     
     @NotNull(message = "{error.commons.required}")
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
 	private Currency currency;
     
     @NotNull(message = "{error.commons.required}")
@@ -51,7 +51,7 @@ public class Finances  implements Serializable {
     
 	@ManyToOne
     @JoinColumn(nullable = false)
-	private FinancesType type;
+	private FinancesType financeType;
     
 
     @NotNull(message = "{error.commons.required}")
@@ -75,7 +75,7 @@ public class Finances  implements Serializable {
 		this.currency = currency;
 		this.monthDuration = monthDuration;
 		this.startDate = startDate;
-		this.type = type;
+		this.financeType = type;
 		this.dateRecording = dateRecording;
 	}
 
@@ -127,12 +127,12 @@ public class Finances  implements Serializable {
 		this.startDate = startDate;
 	}
 
-	public FinancesType getType() {
-		return type;
+	public FinancesType getFinanceType() {
+		return financeType;
 	}
 
-	public void setType(FinancesType type) {
-		this.type = type;
+	public void setFinanceType(FinancesType type) {
+		this.financeType = type;
 	}
 
 	public LocalDate getDateRecording() {

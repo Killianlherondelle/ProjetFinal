@@ -3,12 +3,13 @@ package fr.formation.projetfinal.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.formation.projetfinal.AppLanguage;
-import fr.formation.projetfinal.dto.currencyDTO;
+import fr.formation.projetfinal.dto.CurrencyDTO;
 import fr.formation.projetfinal.repositories.ICurrencyRepository;
 
-
+@Service
 public class CurrencyService implements ICurrencyService {
 	
 
@@ -18,8 +19,10 @@ public class CurrencyService implements ICurrencyService {
     protected CurrencyService(ICurrencyRepository currencyRepository) {
 	this.currencyRepository = currencyRepository;
     }
+    
+    
 	@Override
-	public List<currencyDTO> findAllAsDTO(AppLanguage lang) {
+	public List<CurrencyDTO> findAllAsDTO(AppLanguage lang) {
 		return currencyRepository.findAllAsDTO(lang);
 	}
 

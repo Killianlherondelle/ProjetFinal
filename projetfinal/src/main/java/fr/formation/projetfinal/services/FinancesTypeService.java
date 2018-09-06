@@ -3,11 +3,13 @@ package fr.formation.projetfinal.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.formation.projetfinal.AppLanguage;
 import fr.formation.projetfinal.dto.FinancesTypeDTO;
 import fr.formation.projetfinal.repositories.IFinanceTypeRepository;
 
+@Service
 public class FinancesTypeService implements IFinancesTypeService {
 
     private final IFinanceTypeRepository typeRepository;

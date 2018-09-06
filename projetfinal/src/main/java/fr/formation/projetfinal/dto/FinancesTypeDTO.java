@@ -8,10 +8,10 @@ public class FinancesTypeDTO {
 	 
 	 
 	public FinancesTypeDTO() {
-		super();
+
 	}
 	public FinancesTypeDTO(Long id, String name) {
-		super();
+
 		this.id = id;
 		this.name = name;
 	}
