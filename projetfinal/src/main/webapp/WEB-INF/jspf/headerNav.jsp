@@ -23,5 +23,8 @@
     <li class="nav-item">
       	<li class="nav-item"><a class="nav-link" href="<c:url value="/list/list" />"><spring:message code="list.title" /></a></li>
     </li>
+       <li class="nav-item">
+      	<li class="nav-item"><a class="nav-link" href="<c:url value="/finances/request" />"><spring:message code="finances.title" /></a></li>
+    </li>
   </ul>
 </nav>
