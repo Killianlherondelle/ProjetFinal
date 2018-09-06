@@ -13,37 +13,37 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import fr.formation.projetfinal.dto.FirmItemDTO;
-import fr.formation.projetfinal.dto.UserCustomerDTO;
+import fr.formation.projetfinal.dto.UserCollabDTO;
+import fr.formation.projetfinal.dto.ValueDTO;
 import fr.formation.projetfinal.entities.User;
-import fr.formation.projetfinal.services.IFirmService;
+import fr.formation.projetfinal.services.ICollabService;
 import fr.formation.projetfinal.services.IUserService;
 
 @Controller
-@RequestMapping("/usercust")
-public class UserCustomerController extends BaseController {
+@RequestMapping("/usercollab")
+public class UserCollabController extends BaseController {
 
 	@Autowired
 	private IUserService userService;
 	@Autowired
-	private IFirmService firmService;
+	private ICollabService collabService;
 
 	@SuppressWarnings("unused")
 	@GetMapping("/toCreate")
-	public String toCreate(@ModelAttribute("user") UserCustomerDTO userCustomerDTO, Model model) {
+	public String toCreate(@ModelAttribute("user") UserCollabDTO userCollabDTO, Model model) {
 		populateModel(model);
-		return "userCustomerCreate";
+		return "userCollabCreate";
 	}
 
 	@PostMapping("/create")
-	public String create(@Valid @ModelAttribute("user") UserCustomerDTO userCustomerDTO, BindingResult result,
+	public String create(@Valid @ModelAttribute("user") UserCollabDTO userCollabDTO, BindingResult result,
 			Model model) {
 		populateModel(model);
-		if (validateAndSave(userCustomerDTO, result)) {
-			model.addAttribute("user", new UserCustomerDTO());
+		if (validateAndSave(userCollabDTO, result)) {
+			model.addAttribute("user", new UserCollabDTO());// reset
 			return "redirect:/security/login";
 		}
-		return "userCustomerCreate";
+		return "userCollabCreate";
 	}
 
 	@GetMapping("/toUpdate")
@@ -51,37 +51,38 @@ public class UserCustomerController extends BaseController {
 		User user = userService.findById(getUser().getId());
 		model.addAttribute("user", user);
 		populateModel(model);
-		return "userUpdate";
+		return "userUpdate";// TODO
 	}
 
 	@PostMapping("/update")
-	public String update(@Valid @ModelAttribute("user") UserCustomerDTO userCustomerDTO, BindingResult result,
+	public String update(@Valid @ModelAttribute("user") UserCollabDTO userCollabDTO, BindingResult result,
 			Model model) {
-		userCustomerDTO.setId(getUser().getId());
-		if (validateAndSave(userCustomerDTO, result)) {
+		userCollabDTO.setCollabId(getUser().getId());
+		if (validateAndSave(userCollabDTO, result)) {
 			return "redirect:/home/welcome";
 		}
 		populateModel(model);
-		return "userUpdate";
+		return "userUpdate";// TODO
 	}
 
-	private boolean validateAndSave(UserCustomerDTO userCustomerDTO, BindingResult result) {
-		validate(userCustomerDTO, result);
+	private boolean validateAndSave(UserCollabDTO userCollabDTO, BindingResult result) {
+		validate(userCollabDTO, result);
 		if (!result.hasErrors()) {
-			userService.save(userCustomerDTO);
+			userService.saveCollab(userCollabDTO);
 			return true;
 		}
 		return false;
 	}
 
-	private void validate(UserCustomerDTO userCustomerDTO, BindingResult result) {
-		if (!userService.validateEmail(userCustomerDTO)) {
+	private void validate(UserCollabDTO userCollabDTO, BindingResult result) {
+		if (!userService.validateCollabEmail(userCollabDTO)) {
 			result.rejectValue("email", "error.entities.user.duplicateEmail");
 		}
 	}
 
 	private void populateModel(Model model) {
-		List<FirmItemDTO> firms = firmService.findAllAsDTO();
-		model.addAttribute("firms", firms);
+		List<ValueDTO> emails = collabService.findAllAsDTO();
+		model.addAttribute("emails", emails);
+		model.addAttribute("roles", User.Role.rolesCollab());
 	}
 }

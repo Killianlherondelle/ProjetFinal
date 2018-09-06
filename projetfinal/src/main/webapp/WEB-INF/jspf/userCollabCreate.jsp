@@ -5,24 +5,24 @@
 <!DOCTYPE html>
 <html lang="${pageContext.response.locale.language}">
 <head>
-<title><spring:message code="entities.user.collab.create.title=" /></title>
+<title><spring:message code="entities.user.collab.create.title" /></title>
 <c:import url="commonsHead.jsp" />
 </head>
 <body>
 <c:import url="headerNav.jsp" />
 	<div class="container-fluid">
 		<section>
-			<h1 class="text-primary"><spring:message code="entities.user.collab.create.title=" /></h1>
+			<h1 class="text-primary"><spring:message code="entities.user.collab.create.title" /></h1>
 			<form:form action="create" method="POST" modelAttribute="user">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			
 				<div class="form-row">
 					
 					<div class="form-group col">
-						<form:label path="collabId"><spring:message code="entities.user.listfirm" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
+						<form:label path="collabId"><spring:message code="entities.user.listcollab" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
 						<form:select path="collabId" cssClass="form-control" cssErrorClass="form-control is-invalid">
 							<form:option value="0"><spring:message code="commons.forms.select" /></form:option>
-							<form:options items="${emails}" itemValue="id" itemLabel="email" />
+							<form:options items="${emails}" itemValue="id" itemLabel="label" />
 						</form:select>
 						<form:errors element="div" path="collabId" cssClass="invalid-feedback" />
 					</div>

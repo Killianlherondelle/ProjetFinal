@@ -1,12 +1,15 @@
 package fr.formation.projetfinal.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -16,27 +19,30 @@ public class Collaborator implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6469963931887043704L;
-	
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @NotNull(message = "{error.commons.required}")
-    @Column(length = 10, nullable = false)
-    private String register;
-    
-    @NotNull(message = "{error.commons.required}")
-    @Column(length = 255, nullable = false)
-    private String lastname;
- 
-    @NotNull(message = "{error.commons.required}")
-    @Column(length = 255, nullable = false)
-    private String firstname;
-    
-    @NotNull(message = "{error.commons.required}")
-    @Column(length = 10, nullable = false, unique = true)
-    private String email;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@NotNull(message = "{error.commons.required}")
+	@Column(length = 10, nullable = false)
+	private String register;
+
+	@NotNull(message = "{error.commons.required}")
+	@Column(length = 255, nullable = false)
+	private String lastname;
+
+	@NotNull(message = "{error.commons.required}")
+	@Column(length = 255, nullable = false)
+	private String firstname;
+
+	@NotNull(message = "{error.commons.required}")
+	@Column(length = 255, nullable = false, unique = true)
+	private String email;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	// @NotEmpty(message = "{error.commons.multiple.required}")
+	private List<Firm> firms;
 
 	public Collaborator() {
 		//
@@ -82,6 +88,14 @@ public class Collaborator implements Serializable {
 		this.email = email;
 	}
 
+	public List<Firm> getFirms() {
+		return firms;
+	}
+
+	public void setFirms(List<Firm> firms) {
+		this.firms = firms;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -117,5 +131,5 @@ public class Collaborator implements Serializable {
 	public String toString() {
 		return "Collaborator [id=" + id + ", register=" + register + ", lastname=" + lastname + ", firstname="
 				+ firstname + ", email=" + email + "]";
-	}   
+	}
 }
