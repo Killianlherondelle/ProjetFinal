@@ -1,10 +1,11 @@
 package fr.formation.projetfinal.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -203,6 +204,13 @@ public class User implements Serializable {
 
 		public String getName() {
 			return name();
+		}
+		
+		public static Set<Role> rolesCollab() {
+			Set<Role> rolesCollab = new HashSet<>();
+			rolesCollab.add(ROLE_PO);
+			rolesCollab.add(ROLE_BANKER);
+			return rolesCollab;
 		}
 	}
 }
