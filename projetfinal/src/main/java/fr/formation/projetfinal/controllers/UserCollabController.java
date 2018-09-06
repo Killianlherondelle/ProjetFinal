@@ -67,10 +67,13 @@ public class UserCollabController extends BaseController {
 
 	private boolean validateAndSave(UserCollabDTO userCollabDTO, BindingResult result) {
 		validate(userCollabDTO, result);
+		
 		if (!result.hasErrors()) {
 			userService.saveCollab(userCollabDTO);
 			return true;
 		}
+		System.out.println("validateAndSave");
+		System.out.println(userCollabDTO);
 		return false;
 	}
 

@@ -6,11 +6,11 @@ import fr.formation.projetfinal.entities.User.Role;
 
 public class UserCollabDTO {
 	private Long collabId;
-	@NotNull(message = "{error.commons.required}")
-	private String firstName;
-	@NotNull(message = "{error.commons.required}")
-	private String lastName;
-	@NotNull(message = "{error.commons.required}")
+//	@NotNull(message = "{error.commons.required}")
+//	private String firstName;
+//	@NotNull(message = "{error.commons.required}")
+//	private String lastName;
+//	@NotNull(message = "{error.commons.required}")
 	private String email;
 	@NotNull(message = "{error.commons.required}")
 	private String password;
@@ -28,21 +28,21 @@ public class UserCollabDTO {
 		this.collabId = collabId;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+//	public String getFirstName() {
+//		return firstName;
+//	}
+//
+//	public void setFirstName(String firstName) {
+//		this.firstName = firstName;
+//	}
+//
+//	public String getLastName() {
+//		return lastName;
+//	}
+//
+//	public void setLastName(String lastName) {
+//		this.lastName = lastName;
+//	}
 
 	public String getEmail() {
 		return email;
@@ -66,5 +66,11 @@ public class UserCollabDTO {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "UserCollabDTO [collabId=" + collabId + ", password=" + password + ", role=" + role
+				+ "]";
 	}
 }

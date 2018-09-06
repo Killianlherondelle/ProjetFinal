@@ -70,7 +70,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public User saveCollab(UserCollabDTO userCollabDTO) {
-		
+
 		Long collabId = userCollabDTO.getCollabId();
 		Collaborator collab = collabService.findById(collabId);
 		// via references:
@@ -81,15 +81,23 @@ public class UserService implements IUserService {
 		// via JSP:
 		Role role = userCollabDTO.getRole();
 		String password = userCollabDTO.getPassword();
-		
+
 		User user = new User();
 		user.setLastName(lastName);
 		user.setFirstName(firstName);
 		user.setEmail(email);
-		user.setFirms(firms);
+		/*
+		 * Il faut créer une nouvelle collection, et non setter directement avec
+		 * setFirms(), pour éviter qu'Hibernate fasse un move de l'association entre les
+		 * Collaborators_Firms vers l'association Users_Firms, impliquant un delete sur
+		 * Collaborators_Firms !
+		 */
+		List<Firm> userFirms = new ArrayList<>(firms);
+		user.setFirms(userFirms);
 		user.setRole(role);
 		user.setPassWord(password);
-		
+		System.out.println(user);
+
 		encodePassword(user);
 		return userJpaRepository.save(user);
 	}

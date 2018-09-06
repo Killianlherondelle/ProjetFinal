@@ -27,15 +27,12 @@ public class User implements Serializable {
 	@Column(length = 50, nullable = false, unique = true)
 	private String email;
 
-	
 	@Column(length = 100, nullable = false)
 	private String passWord;
 
-	
 	@Column(length = 20, nullable = false)
 	private String lastName;
 
-	
 	@Column(length = 20, nullable = false)
 	private String firstName;
 
@@ -196,7 +193,7 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", passWord=" + passWord + ", lastName=" + lastName
-				+ ", firstName=" + firstName + ", active=" + active + ", role=" + role + "]";
+				+ ", firstName=" + firstName + ", firms=" + firms + ", active=" + active + ", role=" + role + "]";
 	}
 
 	public static enum Role {
@@ -205,7 +202,7 @@ public class User implements Serializable {
 		public String getName() {
 			return name();
 		}
-		
+
 		public static Set<Role> rolesCollab() {
 			Set<Role> rolesCollab = new HashSet<>();
 			rolesCollab.add(ROLE_PO);
