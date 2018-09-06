@@ -1,5 +1,6 @@
 package fr.formation.projetfinal.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -53,6 +54,8 @@ public class RequestFinancesController extends BaseController {
 	
 	@PostMapping("/create")
 	public String create(@Valid @ModelAttribute("finance") Finances finance, BindingResult result, Model model) {
+	
+		
 		if (validateAndSave(finance, result)) {
 			model.addAttribute("finance", new Finances());
 		}
