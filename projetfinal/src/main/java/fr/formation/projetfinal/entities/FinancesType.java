@@ -26,6 +26,9 @@ public class FinancesType implements Serializable {
     
     @Column(length = 11, nullable = false, unique = true)
     private String code;
+    
+    @Column(length = 50, nullable = false, unique = true)
+    private String frenchName;
 
 	public Long getId() {
 		return id;
