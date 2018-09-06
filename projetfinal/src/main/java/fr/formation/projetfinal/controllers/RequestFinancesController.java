@@ -30,8 +30,9 @@ public class RequestFinancesController extends BaseController {
 	private ICurrencyService currencyService;
 	private IFinancesTypeService typeService;
 
-	@GetMapping("/request")
-	public String welcome() {
+	@GetMapping("/toCreate")
+	public String toCreate(@ModelAttribute("finance") Finances finance,
+		    Model model) {
 		return "RequestFinances";
 	}
 
@@ -41,7 +42,7 @@ public class RequestFinancesController extends BaseController {
 			model.addAttribute("finance", new Finances());
 		}
 		populateModel(model);
-		return "courseCreate";
+		return "";
 	}
 	
 	
@@ -74,7 +75,7 @@ public class RequestFinancesController extends BaseController {
 	private void populateModel(Model model) {
 		List<currencyDTO> currency = currencyService.findAllAsDTO(getAppLanguage());
 		List<FinancesTypeDTO> type = typeService.findAllAsDTO(getAppLanguage());
-		model.addAttribute("currency", currency);
-		model.addAttribute("type", type);
+		model.addAttribute("currencies", currency);
+		model.addAttribute("types", type);
 	}
 }
