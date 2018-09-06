@@ -45,6 +45,14 @@ public class FinancesType implements Serializable {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public String getFrenchName() {
+		return frenchName;
+	}
+
+	public void setFrenchName(String frenchName) {
+		this.frenchName = frenchName;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -89,7 +97,7 @@ public class FinancesType implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FinancesType [id=" + id + ", code=" + code + "]";
+		return "FinancesType [id=" + id + ", code=" + code + ", frenchName=" + frenchName + "]";
 	}
 
 
