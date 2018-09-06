@@ -57,7 +57,7 @@ public class RequestFinancesController extends BaseController {
 			model.addAttribute("finance", new Finances());
 		}
 		populateModel(model);
-		return "";
+		return "userCreate";
 	}
 	
 	
