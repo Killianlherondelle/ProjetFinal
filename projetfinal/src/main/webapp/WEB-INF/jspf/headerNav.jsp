@@ -20,6 +20,10 @@
     <li class="nav-item">
       <li class="nav-item"><a class="nav-link" href="<c:url value="/usercust/toCreate" />"><spring:message code="entities.user.customer.create.title" /></a></li>
     </li>
+    </li>
+       <li class="nav-item">
+      	<li class="nav-item"><a class="nav-link" href="<c:url value="/usercollab/toCreate" />"><spring:message code="finances.title" /></a></li>
+    </li>
     <li class="nav-item">
       	<li class="nav-item"><a class="nav-link" href="<c:url value="/list/list" />"><spring:message code="list.title" /></a></li>
     </li>
