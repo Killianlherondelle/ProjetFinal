@@ -33,7 +33,7 @@ public class Firm implements Serializable {
 	
 	
 	@NotNull(message = "{error.commons.required}")
-	@Column(length = 20, nullable = false, unique = true)
+	@Column(length = 20, nullable = false)
 	private String status;
 	
 	@ManyToOne

@@ -34,6 +34,7 @@
 							<td>${user.lastName}</td>
 							<td>${user.email}</td> 
 							<td>${user.role}</td>
+							<button class="btn btn-primary mb-3"><spring:message code="commons.forms.disable" /></button>
 						</tr>
 					</c:forEach>
 			</tbody>
