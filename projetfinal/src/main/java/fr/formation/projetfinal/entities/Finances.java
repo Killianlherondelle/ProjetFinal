@@ -3,7 +3,11 @@ package fr.formation.projetfinal.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+
+import fr.formation.projetfinal.entities.User.Role;
 
 
 
@@ -53,8 +59,35 @@ public class Finances  implements Serializable {
     @JoinColumn(nullable = false)
 	private FinancesType financeType;
     
+	private BigDecimal perfPlus;
+	
+	@Convert(converter = BooleanConverter.class)
+	@Column(length = 1, nullable = false)
+	public boolean state = true;
+	
 
 
+	public BigDecimal getPerfPlus() {
+		return perfPlus;
+	}
+
+
+
+	public void setPerfPlus(BigDecimal perfPlus) {
+		this.perfPlus = perfPlus;
+	}
+
+
+
+	public boolean isState() {
+		return state;
+	}
+
+
+
+	public void setState(boolean state) {
+		this.state = state;
+	}
 
 	@Column(length = 100, nullable = false)
 	private LocalDate dateRecording;

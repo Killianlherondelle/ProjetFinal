@@ -1,5 +1,6 @@
 package fr.formation.projetfinal.controllers;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class RequestFinancesController extends BaseController {
 	private final ICurrencyService currencyService;
 	private final IFinancesTypeService typeService;
 	
+
 	
 	
 	@Autowired
@@ -57,9 +59,7 @@ public class RequestFinancesController extends BaseController {
 	@PostMapping("/create")
 	public String create(@Valid @ModelAttribute("finance") Finances finance, BindingResult result, Model model) {
 			populateModel(model);
-			System.out.println("---------------------------------------------finance1");
 			if (validateAndSave(finance, result)) {
-				System.out.println("---------------------------------------------finance2");
 				Finances newFinance = new Finances();
 				model.addAttribute("finance", newFinance);
 			}
@@ -72,34 +72,33 @@ public class RequestFinancesController extends BaseController {
 		validate(finance, result);
 		if (!result.hasErrors()) {
 			finance.setDateRecording(LocalDate.now());
+			BigDecimal perfPlus = financeService.calculatePerfPlus(finance, null, null, null);
+			finance.setPerfPlus(perfPlus);
 			financeService.save(finance);
-			System.out.println("---------------------------------------------Validate and save réussi et methode save");
 			return true;
 		}
 		return false;
 	}
 	
+
+
 	
 	
 	private void validate(Finances finance, BindingResult result) {
 		Currency currency = finance.getCurrency();
 		
 		if (Long.valueOf(0L).equals(currency.getId())) {
-			System.out.println("-------------------------------test devise");
 			result.rejectValue("currency.id", "error.commons.required");
 			
 		}
 		FinancesType financeType = finance.getFinanceType();
 		if (Long.valueOf(0L).equals(financeType.getId())) {
-			System.out.println("-----------------------------------test type de finance");
 			result.rejectValue("financeType.id", "error.commons.required");
 			
 		}
 		if (!financeService.validateCode(finance)) {
-			System.out.println("-------------------------------------------test validité du code");
 		    result.rejectValue("code", "error.entities.finances.duplicateCode");
 		}
-		System.out.println("-------------------------------------------test validé");
 	}
 
 	
