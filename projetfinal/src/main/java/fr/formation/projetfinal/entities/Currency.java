@@ -74,7 +74,7 @@ public class Currency implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Country [id=" + id + ", iso=" + iso + "]";
+		return "Currency [id=" + id + ", iso=" + iso + "]";
 	}
 
 	

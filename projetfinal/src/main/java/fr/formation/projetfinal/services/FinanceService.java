@@ -1,5 +1,6 @@
 package fr.formation.projetfinal.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.formation.projetfinal.entities.Finances;
@@ -9,9 +10,10 @@ import fr.formation.projetfinal.repositories.IFinanceRepository;
 @Service
 public class FinanceService implements IFinanceService {
 
-	private IFinanceJpaRepository financeJpaRepository;
+	private final IFinanceJpaRepository financeJpaRepository;
 	private final IFinanceRepository financeRepository;
 	
+	@Autowired
 	public FinanceService(IFinanceJpaRepository financeJpaRepository, IFinanceRepository financeRepository) {
 		this.financeJpaRepository = financeJpaRepository;
 		this.financeRepository = financeRepository;
@@ -19,6 +21,7 @@ public class FinanceService implements IFinanceService {
 
 	@Override
 	public Finances save(Finances finance) {
+		System.out.println("----------------------------------------Save couche service");
 		return financeJpaRepository.save(finance);
 	}
 	
