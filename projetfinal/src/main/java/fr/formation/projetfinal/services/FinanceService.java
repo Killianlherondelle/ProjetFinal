@@ -1,6 +1,7 @@
 package fr.formation.projetfinal.services;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,19 +50,6 @@ public class FinanceService implements IFinanceService {
 	}
 	
 
-	
-	private static BigDecimal madd(BigDecimal a, BigDecimal b,BigDecimal c,BigDecimal d) {
-		return a.add(b).add(c).add(d);
-	}
-	
-	
-	private static BigDecimal divide(BigDecimal a, BigDecimal b) {
-		return a.divide(b);
-	}
-	private static BigDecimal multiply(BigDecimal a, BigDecimal b) {
-		return a.multiply(b);
-	}
-
 	@Override
 	public BigDecimal calculatePerfPlus(Finances finance, Country rateC , Firm rateF, Perf rateP) {
 		BigDecimal mf = finance.getAmount();
@@ -81,11 +69,24 @@ public class FinanceService implements IFinanceService {
 		BigDecimal mfba = multiply(mf, ba);
 		
 		BigDecimal result = madd(mfdf, mfcrc, crpmf, mfba);
-		BigDecimal constante = BigDecimal.valueOf(1);
+		BigDecimal constante = BigDecimal.valueOf(1000);
 		BigDecimal resultPerf = result.divide(constante);
 		return resultPerf ;	
 	}
 	
+	
+	private static BigDecimal madd(BigDecimal a, BigDecimal b,BigDecimal c,BigDecimal d) {
+		return a.add(b).add(c).add(d);
+	}
+	
+	
+	private static BigDecimal divide(BigDecimal a, BigDecimal b) {
+		BigDecimal c = a.divide(b, RoundingMode.HALF_UP);
+		return c;
+	}
+	private static BigDecimal multiply(BigDecimal a, BigDecimal b) {
+		return a.multiply(b);
+	}
 	
 
 }
