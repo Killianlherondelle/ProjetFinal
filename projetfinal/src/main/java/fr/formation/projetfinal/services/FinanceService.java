@@ -23,20 +23,20 @@ import fr.formation.projetfinal.repositories.IFinanceRepository;
 public class FinanceService implements IFinanceService {
 
 	private final IFinanceJpaRepository financeJpaRepository;
-	private final IFinanceRepository financeRepository;
+
 	private final IPerfService perfService;
-	private final ICountryService countryService;
+
 	private final IFirmService firmService;
-	private final IRatingService ratingService;
 
 	@Autowired
-	public FinanceService(IFinanceJpaRepository financeJpaRepository, IFinanceRepository financeRepository, IPerfService perfService, ICountryService countryService, IFirmService firmService, IRatingService ratingService) {
+	public FinanceService(IFinanceJpaRepository financeJpaRepository, 
+			IPerfService perfService,  IFirmService firmService) {
 		this.financeJpaRepository = financeJpaRepository;
-		this.financeRepository = financeRepository;
+
 		this.perfService = perfService;
-		this.countryService = countryService;
+
 		this.firmService = firmService;
-		this.ratingService = ratingService;
+
 	}
 
 	@Override
@@ -66,33 +66,22 @@ public class FinanceService implements IFinanceService {
 	}
 
 	@Override
-	public BigDecimal calculatePerfPlus(Finances finance, Perf perf,Firm firm) {
+	public BigDecimal calculatePerfPlus(Finances finance, Perf perf, Firm firm) {
 		BigDecimal mf = finance.getAmount();
 		BigDecimal df = BigDecimal.valueOf(finance.getMonthDuration());
 		BigDecimal mfdf = divide(mf, df);
-		
-		
-		
+
 		// BigDecimal z = firm.getRating().getValueRating();
-			
-		
-		
+
 		BigDecimal mfcrc = multiply(mf, firm.getRating().getValueRating());
 
-		
-		
-		
-		
-		
 		BigDecimal crp = firm.getCountry().getRating().getValueRating();
 		BigDecimal crpmf = multiply(crp, mf);
-		
-		
+
 		BigDecimal a = perf.getParameterA();
 		BigDecimal b = perf.getParameterB();
 		BigDecimal ba = divide(b, a);
-		
-		
+
 		BigDecimal mfba = multiply(mf, ba);
 
 		BigDecimal result = madd(mfdf, mfcrc, crpmf, mfba);
