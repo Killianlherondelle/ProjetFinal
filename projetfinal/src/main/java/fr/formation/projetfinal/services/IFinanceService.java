@@ -6,10 +6,10 @@ import java.util.List;
 import fr.formation.projetfinal.AppLanguage;
 
 import fr.formation.projetfinal.dto.ValueDTO;
-import fr.formation.projetfinal.entities.Country;
 import fr.formation.projetfinal.entities.Finances;
 import fr.formation.projetfinal.entities.Firm;
 import fr.formation.projetfinal.entities.Perf;
+
 
 public interface IFinanceService {
 
@@ -19,7 +19,7 @@ public interface IFinanceService {
 
 	public List<ValueDTO> findAllAsDTO(AppLanguage appLanguage);
 
-	public BigDecimal calculatePerfPlus(Finances finance, Country rateC , Firm rateF, Perf rateP);
+	public BigDecimal calculatePerfPlus(Finances finance, Perf perf, Firm firm);
     
 
 

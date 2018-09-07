@@ -1,6 +1,6 @@
 package fr.formation.projetfinal.controllers;
 
-import java.math.BigDecimal;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -68,8 +68,6 @@ public class RequestFinancesController extends BaseController {
 		validate(finance, result);
 		if (!result.hasErrors()) {
 			finance.setDateRecording(LocalDate.now());
-			BigDecimal perfPlus = financeService.calculatePerfPlus(finance, null, null, null);
-			finance.setPerfPlus(perfPlus);
 			financeService.save(finance);
 			return true;
 		}

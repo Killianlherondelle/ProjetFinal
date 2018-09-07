@@ -27,6 +27,8 @@ $(function() {
 	
 	$.datepicker.setDefaults($.datepicker.regional[$("html").attr("lang")]);
 	
+	 $( "#datepicker" ).datepicker({ minDate: new Date()});
+	
 	$(".datepicker").datepicker();
 
 });
