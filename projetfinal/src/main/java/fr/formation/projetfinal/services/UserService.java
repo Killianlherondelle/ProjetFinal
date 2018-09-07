@@ -24,7 +24,6 @@ public class UserService implements IUserService {
 
 	private final IUserJpaRepository userJpaRepository;
 	private final IUserRepository userRepository;
-	// private final IFirmJpaRepository fpaReirmJpository;
 	private final IFirmService firmService;
 	private final ICollabService collabService;
 
@@ -70,8 +69,9 @@ public class UserService implements IUserService {
 
 	@Override
 	public User saveCollab(UserCollabDTO userCollabDTO) {
-
+		// Get the collabId given by the web user via the JSP:
 		Long collabId = userCollabDTO.getCollabId();
+		// Get the corresponding Collaborator:
 		Collaborator collab = collabService.findById(collabId);
 		// via references:
 		String lastName = collab.getLastname();
@@ -96,7 +96,6 @@ public class UserService implements IUserService {
 		user.setFirms(userFirms);
 		user.setRole(role);
 		user.setPassWord(password);
-		System.out.println(user);
 
 		encodePassword(user);
 		return userJpaRepository.save(user);
@@ -131,12 +130,15 @@ public class UserService implements IUserService {
 
 	@Override
 	public boolean validateCollabEmail(UserCollabDTO userCollabDTO) {
-		Long id = userCollabDTO.getCollabId();
-		String email = userCollabDTO.getEmail();
-		if (null == id) { // create
+		// Get the collabId given by the web user via the JSP:
+		Long collabId = userCollabDTO.getCollabId();
+		// Get the corresponding Collaborator:
+		Collaborator collab = collabService.findById(collabId);
+		String email = collab.getEmail();// we get the email by Collaborator, not by the UserCollabDTO (JSP)
+		if (null == collabId) { // create
 			return !userJpaRepository.existsByEmailIgnoreCase(email);
 		}
-		return !userJpaRepository.existsByEmailIgnoreCaseAndIdNot(email, id); // update
+		return !userJpaRepository.existsByEmailIgnoreCaseAndIdNot(email, collabId); // update
 	}
 
 	@Override
@@ -149,5 +151,4 @@ public class UserService implements IUserService {
 	public List<UserDTO> findAllAsDTO(AppLanguage lang) {
 		return userRepository.findAllAsDTO(lang);
 	}
-
 }

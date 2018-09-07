@@ -67,19 +67,17 @@ public class UserCollabController extends BaseController {
 
 	private boolean validateAndSave(UserCollabDTO userCollabDTO, BindingResult result) {
 		validate(userCollabDTO, result);
-		
+
 		if (!result.hasErrors()) {
 			userService.saveCollab(userCollabDTO);
 			return true;
 		}
-		System.out.println("validateAndSave");
-		System.out.println(userCollabDTO);
 		return false;
 	}
 
 	private void validate(UserCollabDTO userCollabDTO, BindingResult result) {
 		if (!userService.validateCollabEmail(userCollabDTO)) {
-			result.rejectValue("email", "error.entities.user.duplicateEmail");
+			result.rejectValue("collabId", "error.entities.user.duplicateEmail");
 		}
 	}
 

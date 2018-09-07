@@ -14,7 +14,7 @@
 		<section>
 			<h1 class="text-primary"><spring:message code="entities.user.collab.create.title" /></h1>
 			<form:form action="create" method="POST" modelAttribute="user">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			
 				<div class="form-row">
 					
@@ -24,6 +24,7 @@
 							<form:option value="0"><spring:message code="commons.forms.select" /></form:option>
 							<form:options items="${emails}" itemValue="id" itemLabel="label" />
 						</form:select>
+<%-- 						<form:errors element="div" path="collabId" cssClass="invalid-feedback" /> --%>
 						<form:errors element="div" path="collabId" cssClass="invalid-feedback" />
 					</div>
 					
