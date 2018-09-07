@@ -20,13 +20,15 @@
 			<form:form action="create" method="POST" modelAttribute="finance">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					
+					<div class="form-group col">
+						${thisCustomerFirm.name} - ${thisCustomerFirm.id}
+					</div>
 					
-					
-						<div class="form-group col">
+					<div class="form-group col">
 						<form:label path="code"><spring:message code="entities.finance.code" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
-							<form:input path="code" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off"/>
-							<form:errors element="div" path="code" cssClass="invalid-feedback" />
-						</div>
+						<form:input path="code" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off"/>
+						<form:errors element="div" path="code" cssClass="invalid-feedback" />
+					</div>
 					<div class="form-group col">
 					<form:label path="amount"><spring:message code="entities.finance.amount" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
 						<div class="input-group">
