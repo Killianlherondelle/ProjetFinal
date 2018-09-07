@@ -31,11 +31,11 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${users}" var="user">
-						<c:if test="${user.enabled}">
-							<h3 class="success">
-								COUOCU
-							</h3>
-						</c:if>
+<%-- 						<c:if test="${user.enabled}"> --%>
+<!-- 							<h3 class="success"> -->
+<!-- 								COUOCU -->
+<!-- 							</h3> -->
+<%-- 						</c:if> --%>
 
 						<tr>
 						<td>${user.lastName}</td>

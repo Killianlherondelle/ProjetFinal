@@ -40,6 +40,7 @@ public class ListUsersController extends BaseController {
 
 	private void populateModel(Model model) {
 		List<UserDTO> users = userService.findAllAsDTO(getAppLanguage());
+		System.out.println(users);
 		model.addAttribute("users", users);
 	}
 }
