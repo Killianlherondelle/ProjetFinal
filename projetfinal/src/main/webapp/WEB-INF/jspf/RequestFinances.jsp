@@ -27,7 +27,7 @@
 						</div>
 					<div class="form-group col">
 					<form:label path="amount"><spring:message code="entities.finance.amount" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
-						<div class="input-group col">
+						<div class="input-group">
 						<div class="input-group-prepend">
 					        	<div class="input-group-text"><spring:message code="commons.symbols.euro" /></div>
 					        </div>
@@ -54,10 +54,10 @@
 					</div>
 					<div class="form-group col">
 					<form:label path="monthDuration"><spring:message code="entities.finance.monthDuration" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
-						<div class="input-group col">
+						<div class="input-group">
 							<form:input path="monthDuration" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" lang="fr"  />
 							<form:errors element="div" path="monthDuration" cssClass="invalid-feedback" />
-						</div></div>
+					</div></div>
 						
 					<div class="form-group col">
 						<form:label path="startDate"><spring:message code="entities.finance.startDate" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>

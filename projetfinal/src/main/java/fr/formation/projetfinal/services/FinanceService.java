@@ -1,8 +1,12 @@
 package fr.formation.projetfinal.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.formation.projetfinal.AppLanguage;
+import fr.formation.projetfinal.dto.ValueDTO;
 import fr.formation.projetfinal.entities.Finances;
 import fr.formation.projetfinal.repositories.IFinanceJpaRepository;
 import fr.formation.projetfinal.repositories.IFinanceRepository;
@@ -33,6 +37,12 @@ public class FinanceService implements IFinanceService {
 		    return !financeJpaRepository.existsByCodeIgnoreCase(code);
 		}
 		return !financeJpaRepository.existsByCodeIgnoreCaseAndIdNot(code, id);
+	}
+
+	@Override
+	public List<ValueDTO> findAllAsDTO(AppLanguage appLanguage) {
+
+		return null;
 	}
 
 }
