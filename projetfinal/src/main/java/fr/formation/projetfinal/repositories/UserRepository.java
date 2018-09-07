@@ -16,7 +16,7 @@ public class UserRepository extends BaseRepository implements IUserRepository {
 	@Override
 	public List<UserDTO> findAllAsDTO(AppLanguage lang) {
 		StringBuilder queryBuilder = new StringBuilder(
-				"select new fr.formation.projetfinal.dto.UserDTO(u.id, u.lastName, u.email, u.role) from User u");
+				"select new fr.formation.projetfinal.dto.UserDTO(u.id, u.lastName, u.email, u.role, u.enabled) from User u where u.enabled = true");
 		// String nameCol = "frenchName as courseName, t.";
 		// String typeNameCol = "frenchName";
 		// if (lang.isEnglish()) {

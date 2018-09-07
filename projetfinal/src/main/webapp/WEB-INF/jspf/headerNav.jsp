@@ -31,6 +31,10 @@
     <li class="nav-item">
       	<li class="nav-item"><a class="nav-link" href="<c:url value="/list/list" />"><spring:message code="list.title" /></a></li>
     </li>
+     <li class="nav-item">
+      <li class="nav-item"><a class="nav-link" href="<c:url value="/perf/toUpdate" />"><spring:message code="entities.perf.param.create.title.short" /></a></li>
+    </li>
+    
     </sec:authorize>
     <sec:authorize access="hasAnyRole('ROLE_CUSTOMER, ROLE_ADMIN')">
        <li class="nav-item">

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import fr.formation.projetfinal.dto.*;
+import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.services.*;
 
 @Controller
@@ -27,8 +28,19 @@ public class ListUsersController extends BaseController {
 		return "ListUsers";
 	}
 
+	@GetMapping("/update/{id}")
+	public String update(@PathVariable("id") Long id, Model model) {
+		User userToUpdate = userService.findById(id);// get the corresponding User
+		userToUpdate.setEnabled(false);
+		userService.save(userToUpdate);
+
+		populateModel(model);
+		return "ListUsers";// return to the same jsp
+	}
+
 	private void populateModel(Model model) {
 		List<UserDTO> users = userService.findAllAsDTO(getAppLanguage());
+		System.out.println(users);
 		model.addAttribute("users", users);
 	}
 }

@@ -42,7 +42,7 @@ public class User implements Serializable {
 
 	@Convert(converter = BooleanConverter.class)
 	@Column(length = 1, nullable = false)
-	private boolean active = true;
+	private boolean active = true;// TODO: DELETE THIS
 
 	@NotNull(message = "{error.commons.required}")
 	@Enumerated(EnumType.STRING)

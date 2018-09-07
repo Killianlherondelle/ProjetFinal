@@ -1,5 +1,8 @@
 package fr.formation.projetfinal.dto;
 
+import javax.persistence.Convert;
+
+import fr.formation.projetfinal.entities.BooleanConverter;
 import fr.formation.projetfinal.entities.User.Role;
 
 public class UserDTO {
@@ -8,17 +11,21 @@ public class UserDTO {
 	private String lastName;
 	private String email;
 	private Role role;
+	@Convert(converter = BooleanConverter.class)
+	boolean enabled;
 	// firm // TODO
 
 	public UserDTO() {
 		// Empty constructor.
 	}
-
-	public UserDTO(long id, String lastName, String email, Role role) {
+	
+	public UserDTO(long id, String lastName, String email, Role role, Boolean enabled) {
+		super();
 		this.id = id;
 		this.lastName = lastName;
 		this.email = email;
 		this.role = role;
+		this.enabled = enabled;
 	}
 
 	public long getId() {
@@ -53,8 +60,18 @@ public class UserDTO {
 		this.role = role;
 	}
 
+	public Boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
-		return "UserDTO [id=" + id + ", lastName=" + lastName + ", email=" + email + ", role=" + role + "]";
+		return "UserDTO [id=" + id + ", lastName=" + lastName + ", email=" + email + ", role=" + role + ", enabled="
+				+ enabled + "]";
 	}
+	
 }
