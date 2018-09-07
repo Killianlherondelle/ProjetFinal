@@ -21,6 +21,8 @@ import fr.formation.projetfinal.dto.CurrencyDTO;
 import fr.formation.projetfinal.entities.Currency;
 import fr.formation.projetfinal.entities.Finances;
 import fr.formation.projetfinal.entities.FinancesType;
+import fr.formation.projetfinal.entities.Firm;
+import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.services.ICurrencyService;
 import fr.formation.projetfinal.services.IFinanceService;
 import fr.formation.projetfinal.services.IFinancesTypeService;
@@ -29,14 +31,11 @@ import fr.formation.projetfinal.services.IFinancesTypeService;
 @Controller
 @RequestMapping("/finances")
 public class RequestFinancesController extends BaseController {
-	
+
 	private final IFinanceService financeService;
 	private final ICurrencyService currencyService;
 	private final IFinancesTypeService typeService;
-	
 
-	
-	
 	@Autowired
 	protected RequestFinancesController(IFinanceService financeService, ICurrencyService currencyService,
 			IFinancesTypeService typeService) {
@@ -45,28 +44,23 @@ public class RequestFinancesController extends BaseController {
 		this.typeService = typeService;
 	}
 
-	
 	@GetMapping("/toCreate")
-	public String toCreate(@ModelAttribute("finance") Finances finance,
-		    Model model) {
-		
+	public String toCreate(@ModelAttribute("finance") Finances finance, Model model) {
+
 		populateModel(model);
 		return "RequestFinances";
 	}
 
-	
-	
 	@PostMapping("/create")
 	public String create(@Valid @ModelAttribute("finance") Finances finance, BindingResult result, Model model) {
-			populateModel(model);
-			if (validateAndSave(finance, result)) {
-				Finances newFinance = new Finances();
-				model.addAttribute("finance", newFinance);
-			}
-			populateModel(model);
-			return "RequestFinances";
+		populateModel(model);
+		if (validateAndSave(finance, result)) {
+			Finances newFinance = new Finances();
+			model.addAttribute("finance", newFinance);
 		}
-	
+		populateModel(model);
+		return "RequestFinances";
+	}
 
 	private boolean validateAndSave(Finances finance, BindingResult result) {
 		validate(finance, result);
@@ -79,39 +73,31 @@ public class RequestFinancesController extends BaseController {
 		}
 		return false;
 	}
-	
 
-
-	
-	
 	private void validate(Finances finance, BindingResult result) {
 		Currency currency = finance.getCurrency();
-		
+
 		if (Long.valueOf(0L).equals(currency.getId())) {
 			result.rejectValue("currency.id", "error.commons.required");
-			
+
 		}
 		FinancesType financeType = finance.getFinanceType();
 		if (Long.valueOf(0L).equals(financeType.getId())) {
 			result.rejectValue("financeType.id", "error.commons.required");
-			
+
 		}
 		if (!financeService.validateCode(finance)) {
-		    result.rejectValue("code", "error.entities.finances.duplicateCode");
+			result.rejectValue("code", "error.entities.finances.duplicateCode");
 		}
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 	private void populateModel(Model model) {
 		List<CurrencyDTO> currencies = currencyService.findAllAsDTO(getAppLanguage());
 		List<FinancesTypeDTO> financeType = typeService.findAllAsDTO(getAppLanguage());
+		User thisUser = getUser();
+		List<Firm> firms = thisUser.getFirms();
+		Firm thisCustomerFirm = firms.get(0);
+		model.addAttribute("thisCustomerFirm", thisCustomerFirm);
 		model.addAttribute("currencies", currencies);
 		model.addAttribute("financeTypes", financeType);
 	}

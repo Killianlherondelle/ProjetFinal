@@ -3,9 +3,6 @@ package fr.formation.projetfinal.entities;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -17,12 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-import fr.formation.projetfinal.entities.User.Role;
-
-
-
 @Entity
-public class Finances  implements Serializable {
+public class Finances implements Serializable {
 
 	/**
 	 * 
@@ -30,60 +23,56 @@ public class Finances  implements Serializable {
 	private static final long serialVersionUID = -5669345826081471356L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	@NotNull(message = "{error.commons.required}")
-    @Column(length = 100, nullable = false)
+	@Column(length = 100, nullable = false)
 	private String code;
-    
-    @NotNull(message = "{error.commons.required}")
+
+	@NotNull(message = "{error.commons.required}")
 	@Positive(message = "{error.commons.positive}")
-    @JoinColumn(nullable = false)
+	@JoinColumn(nullable = false)
 	private BigDecimal amount;
-    
-    @ManyToOne
-    @NotNull(message = "{error.commons.required}")
-    @JoinColumn(nullable = false)
-	private Currency currency;
-    
-    @NotNull(message = "{error.commons.required}")
-    @Column(length = 100, nullable = false)
-	private int monthDuration;
-    
-    @NotNull(message = "{error.commons.required}")
-    @Column(length = 1000, nullable = false)
-	private LocalDate startDate;
-    
+
 	@ManyToOne
-    @JoinColumn(nullable = false)
+	@NotNull(message = "{error.commons.required}")
+	@JoinColumn(nullable = false)
+	private Currency currency;
+
+	@NotNull(message = "{error.commons.required}")
+	@Positive(message = "{error.commons.positive}")
+	@Column(length = 100, nullable = false)
+	private int monthDuration;
+
+	@NotNull(message = "{error.commons.required}")
+	@Column(length = 1000, nullable = false)
+	private LocalDate startDate;
+
+	@ManyToOne
+	@JoinColumn(nullable = false)
 	private FinancesType financeType;
-    
+
+	@ManyToOne
+	private Firm firm;
+
 	private BigDecimal perfPlus;
-	
+
 	@Convert(converter = BooleanConverter.class)
 	@Column(length = 1, nullable = false)
 	public boolean state = true;
-	
-
 
 	public BigDecimal getPerfPlus() {
 		return perfPlus;
 	}
 
-
-
 	public void setPerfPlus(BigDecimal perfPlus) {
 		this.perfPlus = perfPlus;
 	}
 
-
-
 	public boolean isState() {
 		return state;
 	}
-
-
 
 	public void setState(boolean state) {
 		this.state = state;
@@ -91,11 +80,9 @@ public class Finances  implements Serializable {
 
 	@Column(length = 100, nullable = false)
 	private LocalDate dateRecording;
-    
-    public Finances() {
-    }
 
-
+	public Finances() {
+	}
 
 	public Long getId() {
 		return id;
@@ -161,10 +148,7 @@ public class Finances  implements Serializable {
 		this.dateRecording = dateRecording;
 	}
 
-	
-    
-    
-    @Override
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -195,8 +179,5 @@ public class Finances  implements Serializable {
 				+ ", monthDuration=" + monthDuration + ", startDate=" + startDate + ", financeType=" + financeType
 				+ ", dateRecording=" + dateRecording + "]";
 	}
-	
-    
-    
 
 }

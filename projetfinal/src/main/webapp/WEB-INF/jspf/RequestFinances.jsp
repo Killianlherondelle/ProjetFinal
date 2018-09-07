@@ -18,7 +18,9 @@
 		<section>
 			<h1 class="text-primary"></h1>
 			<form:form action="create" method="POST" modelAttribute="finance">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					
+					
 					
 						<div class="form-group col">
 						<form:label path="code"><spring:message code="entities.finance.code" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
