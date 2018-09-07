@@ -10,6 +10,7 @@
 </head>
 <body>
 <c:import url="headerNav.jsp" />
+<c:import url="role.jsp" />
 	<div class="container-fluid">
 		<section>
 			<h1 class="text-primary"><spring:message code="entities.user.create.title" /></h1>

@@ -13,6 +13,7 @@
 </head>
 <body>
 <c:import url="headerNav.jsp" />
+<c:import url="role.jsp" />
 
 <div class="container-fluid">
 		<section>
