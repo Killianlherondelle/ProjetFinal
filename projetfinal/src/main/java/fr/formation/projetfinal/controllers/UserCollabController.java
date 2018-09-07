@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +19,7 @@ import fr.formation.projetfinal.dto.ValueDTO;
 import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.services.ICollabService;
 import fr.formation.projetfinal.services.IUserService;
-
+@Secured({ "ROLE_PO", "ROLE_ADMIN" })
 @Controller
 @RequestMapping("/usercollab")
 public class UserCollabController extends BaseController {

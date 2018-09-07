@@ -4,8 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="${pageContext.response.locale.language}">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><spring:message code="list.title" /></title>
@@ -14,30 +14,26 @@
 <body>
 <c:import url="headerNav.jsp" />
 
-<div class="container">
 <div class="container-fluid">
 		<section>
 			<h1 class="text-primary"></h1>
 			<form:form action="create" method="POST" modelAttribute="finance">
-				<div class="form-row">
-					<div class="form-group col">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					
-					
-					<form:label path="code"><spring:message code="entities.finance.code" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
-						<div class="input-group col">
-							<form:input path="code" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" lang="fr"  />
+						<div class="form-group col">
+						<form:label path="code"><spring:message code="entities.finance.code" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
+							<form:input path="code" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off"/>
 							<form:errors element="div" path="code" cssClass="invalid-feedback" />
 						</div>
-					
-					
+					<div class="form-group col">
 					<form:label path="amount"><spring:message code="entities.finance.amount" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
-						<div class="input-group col">
+						<div class="input-group">
 						<div class="input-group-prepend">
 					        	<div class="input-group-text"><spring:message code="commons.symbols.euro" /></div>
 					        </div>
 							<form:input path="amount" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" lang="fr"  />
 							<form:errors element="div" path="amount" cssClass="invalid-feedback" />
-						</div>
+						</div></div>
 
 					<div class="form-group col">
 						<form:label path="currency.id"><spring:message code="entities.finance.currency" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
@@ -56,27 +52,24 @@
 						</form:select>
 						<form:errors element="div" path="financeType.id" cssClass="invalid-feedback" />
 					</div>
-					
+					<div class="form-group col">
 					<form:label path="monthDuration"><spring:message code="entities.finance.monthDuration" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
-						<div class="input-group col">
+						<div class="input-group">
 							<form:input path="monthDuration" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" lang="fr"  />
 							<form:errors element="div" path="monthDuration" cssClass="invalid-feedback" />
-						</div>
+					</div></div>
 						
 					<div class="form-group col">
 						<form:label path="startDate"><spring:message code="entities.finance.startDate" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
-						<form:input path="startDate" maxlength="10" placeHolder="${datePattern}" cssClass="form-control datepicker" cssErrorClass="form-control datepicker is-invalid" autocomplete="off" />
+						<form:input path="startDate" maxlength="10" placeHolder="${datePattern}" cssClass="form-control datepicker" cssErrorClass="form-control datepicker is-invalid" autocomplete="off" lang="fr" />
 						<form:errors element="div" path="startDate" cssClass="invalid-feedback" />
 					</div>
-	</div>
-<form:button class="btn btn-primary mb-3"><spring:message code="commons.forms.save" /></form:button>
-</div>
-</form:form>
-</section>
-</div>
-</div>
-	
-	
-<c:import url="footerNav.jsp" />
+				
+				<button type="reset" class="btn btn-primary mb-3"><spring:message code="commons.forms.reset" /></button>
+				<form:button class="btn btn-primary mb-3"><spring:message code="commons.forms.save" /></form:button>
+			</form:form>
+		</section>
+		</div>
+	<c:import url="footerNav.jsp" />
 </body>
 </html>

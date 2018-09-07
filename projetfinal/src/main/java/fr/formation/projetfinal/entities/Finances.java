@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -29,14 +28,15 @@ public class Finances  implements Serializable {
     private Long id;
 	
 	@NotNull(message = "{error.commons.required}")
-	@Positive(message = "{error.commons.positive}")
     @Column(length = 100, nullable = false)
 	private String code;
     
     @NotNull(message = "{error.commons.required}")
-    @Column(length = 100, nullable = false)
+	@Positive(message = "{error.commons.positive}")
+    @JoinColumn(nullable = false)
 	private BigDecimal amount;
     
+    @ManyToOne
     @NotNull(message = "{error.commons.required}")
     @JoinColumn(nullable = false)
 	private Currency currency;
@@ -54,30 +54,15 @@ public class Finances  implements Serializable {
 	private FinancesType financeType;
     
 
-    @NotNull(message = "{error.commons.required}")
-    @Column(length = 100, nullable = false)
+
+
+	@Column(length = 100, nullable = false)
 	private LocalDate dateRecording;
     
     public Finances() {
     }
 
-	public Finances(Long id,
-			@NotNull(message = "{error.commons.required}") @Positive(message = "{error.commons.positive}") String code,
-			@NotNull(message = "{error.commons.required}") BigDecimal amount,
-			@NotNull(message = "{error.commons.required}") Currency currency,
-			@NotNull(message = "{error.commons.required}") int monthDuration,
-			@NotNull(message = "{error.commons.required}") LocalDate startDate, FinancesType type,
-			@NotNull(message = "{error.commons.required}") LocalDate dateRecording) {
-		
-		this.id = id;
-		this.code = code;
-		this.amount = amount;
-		this.currency = currency;
-		this.monthDuration = monthDuration;
-		this.startDate = startDate;
-		this.financeType = type;
-		this.dateRecording = dateRecording;
-	}
+
 
 	public Long getId() {
 		return id;
@@ -143,15 +128,40 @@ public class Finances  implements Serializable {
 		this.dateRecording = dateRecording;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	
+    
+    
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		return result;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Finances other = (Finances) obj;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		return true;
+	}
 
-    
-    
-    
-
+	@Override
+	public String toString() {
+		return "Finances [id=" + id + ", code=" + code + ", amount=" + amount + ", currency=" + currency
+				+ ", monthDuration=" + monthDuration + ", startDate=" + startDate + ", financeType=" + financeType
+				+ ", dateRecording=" + dateRecording + "]";
+	}
 	
     
     

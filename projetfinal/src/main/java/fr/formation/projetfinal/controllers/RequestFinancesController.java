@@ -1,10 +1,12 @@
 package fr.formation.projetfinal.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,14 +24,14 @@ import fr.formation.projetfinal.services.ICurrencyService;
 import fr.formation.projetfinal.services.IFinanceService;
 import fr.formation.projetfinal.services.IFinancesTypeService;
 
-
+@Secured({ "ROLE_CUSTOMER", "ROLE_ADMIN" })
 @Controller
 @RequestMapping("/finances")
 public class RequestFinancesController extends BaseController {
 	
-	private IFinanceService financeService;
-	private ICurrencyService currencyService;
-	private IFinancesTypeService typeService;
+	private final IFinanceService financeService;
+	private final ICurrencyService currencyService;
+	private final IFinancesTypeService typeService;
 	
 	
 	
@@ -45,6 +47,7 @@ public class RequestFinancesController extends BaseController {
 	@GetMapping("/toCreate")
 	public String toCreate(@ModelAttribute("finance") Finances finance,
 		    Model model) {
+		
 		populateModel(model);
 		return "RequestFinances";
 	}
@@ -53,41 +56,60 @@ public class RequestFinancesController extends BaseController {
 	
 	@PostMapping("/create")
 	public String create(@Valid @ModelAttribute("finance") Finances finance, BindingResult result, Model model) {
-	
-		
-		if (validateAndSave(finance, result)) {
-			model.addAttribute("finance", new Finances());
+			populateModel(model);
+			System.out.println("---------------------------------------------finance1");
+			if (validateAndSave(finance, result)) {
+				System.out.println("---------------------------------------------finance2");
+				Finances newFinance = new Finances();
+				model.addAttribute("finance", newFinance);
+			}
+			populateModel(model);
+			return "RequestFinances";
 		}
-		populateModel(model);
-		return "userCreate";
-	}
-	
 	
 
 	private boolean validateAndSave(Finances finance, BindingResult result) {
 		validate(finance, result);
 		if (!result.hasErrors()) {
+			finance.setDateRecording(LocalDate.now());
 			financeService.save(finance);
+			System.out.println("---------------------------------------------Validate and save réussi et methode save");
 			return true;
 		}
 		return false;
 	}
 	
 	
+	
 	private void validate(Finances finance, BindingResult result) {
 		Currency currency = finance.getCurrency();
+		
 		if (Long.valueOf(0L).equals(currency.getId())) {
+			System.out.println("-------------------------------test devise");
 			result.rejectValue("currency.id", "error.commons.required");
+			
 		}
 		FinancesType financeType = finance.getFinanceType();
 		if (Long.valueOf(0L).equals(financeType.getId())) {
+			System.out.println("-----------------------------------test type de finance");
 			result.rejectValue("financeType.id", "error.commons.required");
+			
 		}
 		if (!financeService.validateCode(finance)) {
+			System.out.println("-------------------------------------------test validité du code");
 		    result.rejectValue("code", "error.entities.finances.duplicateCode");
 		}
+		System.out.println("-------------------------------------------test validé");
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 	private void populateModel(Model model) {
 		List<CurrencyDTO> currencies = currencyService.findAllAsDTO(getAppLanguage());
 		List<FinancesTypeDTO> financeType = typeService.findAllAsDTO(getAppLanguage());

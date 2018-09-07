@@ -37,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/security/login", "/users/toCreate",
 			"/users/create", "/static/**")
 		.permitAll()
-		//.anyRequest().authenticated()
+		//désactiver la sécurité en mettant comment sur cette ligne:
+		.anyRequest().authenticated()
 		.and().formLogin()
 		.loginPage("/security/login").loginProcessingUrl("/login")
 		// en cas de succÃ¨s de login, dirige vers:
