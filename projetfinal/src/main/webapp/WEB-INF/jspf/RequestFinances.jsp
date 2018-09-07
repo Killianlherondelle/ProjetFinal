@@ -19,10 +19,11 @@
 			<h1 class="text-primary"></h1>
 			<form:form action="create" method="POST" modelAttribute="finance">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					
-					<div class="form-group col">
-						${thisCustomerFirm.name} - ${thisCustomerFirm.id}
-					</div>
+					<form:hidden path="firm.id"/>
+<!-- 					<div class="form-group col"> -->
+<%-- 						<form:label path="firm.name">Votre entreprise:</form:label> --%>
+<%-- 						<form:input path="firm.name" maxlength="30" cssClass="form-control" disabled="true" autocomplete="off" /> --%>
+<!-- 					</div> -->
 					
 					<div class="form-group col">
 						<form:label path="code"><spring:message code="entities.finance.code" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>

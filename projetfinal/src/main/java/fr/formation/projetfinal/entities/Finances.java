@@ -148,6 +148,14 @@ public class Finances implements Serializable {
 		this.dateRecording = dateRecording;
 	}
 
+	public Firm getFirm() {
+		return firm;
+	}
+
+	public void setFirm(Firm firm) {
+		this.firm = firm;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -46,14 +46,16 @@ public class RequestFinancesController extends BaseController {
 
 	@GetMapping("/toCreate")
 	public String toCreate(@ModelAttribute("finance") Finances finance, Model model) {
-
+		User thisUser = getUser();
+		List<Firm> firms = thisUser.getFirms();
+		Firm firm = firms.get(0);
+		finance.setFirm(firm);// get the firm for the session and the JSP.
 		populateModel(model);
 		return "RequestFinances";
 	}
 
 	@PostMapping("/create")
 	public String create(@Valid @ModelAttribute("finance") Finances finance, BindingResult result, Model model) {
-		populateModel(model);
 		if (validateAndSave(finance, result)) {
 			Finances newFinance = new Finances();
 			model.addAttribute("finance", newFinance);
@@ -94,10 +96,6 @@ public class RequestFinancesController extends BaseController {
 	private void populateModel(Model model) {
 		List<CurrencyDTO> currencies = currencyService.findAllAsDTO(getAppLanguage());
 		List<FinancesTypeDTO> financeType = typeService.findAllAsDTO(getAppLanguage());
-		User thisUser = getUser();
-		List<Firm> firms = thisUser.getFirms();
-		Firm thisCustomerFirm = firms.get(0);
-		model.addAttribute("thisCustomerFirm", thisCustomerFirm);
 		model.addAttribute("currencies", currencies);
 		model.addAttribute("financeTypes", financeType);
 	}
