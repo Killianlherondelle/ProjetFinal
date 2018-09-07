@@ -8,17 +8,19 @@ public class UserDTO {
 	private String lastName;
 	private String email;
 	private Role role;
+	boolean enabled;
 	// firm // TODO
 
 	public UserDTO() {
 		// Empty constructor.
 	}
 
-	public UserDTO(long id, String lastName, String email, Role role) {
+	public UserDTO(long id, String lastName, String email, Role role, boolean enabled) {
 		this.id = id;
 		this.lastName = lastName;
 		this.email = email;
 		this.role = role;
+		this.enabled = enabled;
 	}
 
 	public long getId() {
@@ -51,6 +53,14 @@ public class UserDTO {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Override
