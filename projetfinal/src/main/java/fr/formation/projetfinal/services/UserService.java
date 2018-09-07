@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,7 @@ public class UserService implements IUserService {
 		return userJpaRepository.save(user);
 	}
 
+	@Secured({ "ROLE_PO", "ROLE_ADMIN" })
 	@Override
 	public User save(UserCustomerDTO userCustomerDTO) {
 
@@ -66,7 +68,8 @@ public class UserService implements IUserService {
 		encodePassword(user);
 		return userJpaRepository.save(user);
 	}
-
+	
+	@Secured({ "ROLE_PO", "ROLE_ADMIN" })
 	@Override
 	public User saveCollab(UserCollabDTO userCollabDTO) {
 		// Get the collabId given by the web user via the JSP:

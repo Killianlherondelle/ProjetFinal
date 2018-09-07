@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,7 @@ import fr.formation.projetfinal.services.ICurrencyService;
 import fr.formation.projetfinal.services.IFinanceService;
 import fr.formation.projetfinal.services.IFinancesTypeService;
 
-
+@Secured({ "ROLE_CUSTOMER", "ROLE_ADMIN" })
 @Controller
 @RequestMapping("/finances")
 public class RequestFinancesController extends BaseController {
