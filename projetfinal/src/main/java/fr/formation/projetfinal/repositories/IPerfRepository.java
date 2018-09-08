@@ -7,6 +7,6 @@ import fr.formation.projetfinal.dto.PerfDTO;
 
 public interface IPerfRepository {
 
-	List<PerfDTO> findAllAsDTO(AppLanguage lang);
+	public List<PerfDTO> findAllAsDTO(AppLanguage lang);
 
 }

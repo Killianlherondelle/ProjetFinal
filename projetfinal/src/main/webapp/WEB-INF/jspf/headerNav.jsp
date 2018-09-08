@@ -31,12 +31,15 @@
     <li class="nav-item">
       	<li class="nav-item"><a class="nav-link" href="<c:url value="/list/list" />"><spring:message code="list.title" /></a></li>
     </li>
+    <li class="nav-item">
+      	<li class="nav-item"><a class="nav-link" href="<c:url value="/listpo/list" />"><spring:message code="entities.finance.list.po.title.short" /></a></li>
+    </li>
      <li class="nav-item">
       <li class="nav-item"><a class="nav-link" href="<c:url value="/perf/toUpdate" />"><spring:message code="entities.perf.param.create.title.short" /></a></li>
     </li>
     
     </sec:authorize>
-    <sec:authorize access="hasAnyRole('ROLE_CUSTOMER, ROLE_ADMIN')">
+    <sec:authorize access="hasRole('ROLE_CUSTOMER')">
        <li class="nav-item">
       	<li class="nav-item"><a class="nav-link" href="<c:url value="/finances/toCreate" />"><spring:message code="finances.title" /></a></li>
     </li>

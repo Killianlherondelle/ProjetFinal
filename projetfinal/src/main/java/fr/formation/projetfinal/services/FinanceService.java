@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.formation.projetfinal.AppLanguage;
+import fr.formation.projetfinal.dto.FinancePODTO;
 import fr.formation.projetfinal.dto.ValueDTO;
 import fr.formation.projetfinal.entities.Country;
 import fr.formation.projetfinal.entities.Finances;
@@ -27,12 +28,14 @@ public class FinanceService implements IFinanceService {
 	private final IPerfService perfService;
 
 	private final IFirmService firmService;
+	
+	private final IFinanceRepository financeRepository;
 
 	@Autowired
 	public FinanceService(IFinanceJpaRepository financeJpaRepository, 
-			IPerfService perfService,  IFirmService firmService) {
+			IPerfService perfService,  IFirmService firmService, IFinanceRepository financeRepository) {
 		this.financeJpaRepository = financeJpaRepository;
-
+		this.financeRepository = financeRepository;
 		this.perfService = perfService;
 
 		this.firmService = firmService;
@@ -101,6 +104,11 @@ public class FinanceService implements IFinanceService {
 
 	private static BigDecimal multiply(BigDecimal a, BigDecimal b) {
 		return a.multiply(b);
+	}
+
+	@Override
+	public List<FinancePODTO> findAllForPOAsDTO(AppLanguage appLanguage) {
+		return financeRepository.findAllForPOAsDTO(appLanguage);
 	}
 
 }

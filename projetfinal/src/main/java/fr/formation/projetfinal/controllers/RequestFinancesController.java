@@ -27,7 +27,7 @@ import fr.formation.projetfinal.services.ICurrencyService;
 import fr.formation.projetfinal.services.IFinanceService;
 import fr.formation.projetfinal.services.IFinancesTypeService;
 
-@Secured({ "ROLE_CUSTOMER", "ROLE_ADMIN" })
+@Secured({ "ROLE_CUSTOMER" })
 @Controller
 @RequestMapping("/finances")
 public class RequestFinancesController extends BaseController {

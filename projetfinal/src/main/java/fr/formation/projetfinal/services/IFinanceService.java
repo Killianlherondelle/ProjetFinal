@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import fr.formation.projetfinal.AppLanguage;
-
+import fr.formation.projetfinal.dto.FinancePODTO;
 import fr.formation.projetfinal.dto.ValueDTO;
 import fr.formation.projetfinal.entities.Finances;
 import fr.formation.projetfinal.entities.Firm;
@@ -20,6 +20,8 @@ public interface IFinanceService {
 	public List<ValueDTO> findAllAsDTO(AppLanguage appLanguage);
 
 	public BigDecimal calculatePerfPlus(Finances finance, Perf perf, Firm firm);
+	
+	public List<FinancePODTO> findAllForPOAsDTO(AppLanguage appLanguage);
     
 
 
