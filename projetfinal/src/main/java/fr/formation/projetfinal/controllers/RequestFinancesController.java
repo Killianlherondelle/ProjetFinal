@@ -48,8 +48,10 @@ public class RequestFinancesController extends BaseController {
 	public String toCreate(@ModelAttribute("finance") Finances finance, Model model) {
 		User thisUser = getUser();
 		List<Firm> firms = thisUser.getFirms();
-		Firm firm = firms.get(0);
-		finance.setFirm(firm);// get the firm for the session and the JSP.
+		if (!firms.isEmpty()) {
+			Firm firm = firms.get(0);
+			finance.setFirm(firm);// get the firm for the session and the JSP.
+		}
 		populateModel(model);
 		return "RequestFinances";
 	}
