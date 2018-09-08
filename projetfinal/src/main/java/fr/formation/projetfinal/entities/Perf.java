@@ -25,13 +25,13 @@ public class Perf implements Serializable{
 	private Long id;
 	
 	@NotNull(message = "{error.commons.required}")
-	@Column(length = 100, nullable = false)
+	@Column(length = 100, nullable = false, precision = 19, scale = 3)
 	@DecimalMin(value="0.01")
 	@DecimalMax(value="1")
 	private BigDecimal parameterA;
 	
 	@NotNull(message = "{error.commons.required}")
-	@Column(length = 100, nullable = false)
+	@Column(length = 100, nullable = false, precision = 19, scale = 3)
 	@DecimalMin(value="0.001")
 	@DecimalMax(value="0.025")
 	private BigDecimal parameterB;
