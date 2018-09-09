@@ -6,17 +6,17 @@
 
 
 		<sec:authorize access ="hasRole('ROLE_ADMIN')">
-		 <h5>Bonjour Admin</h5>
+		 <h5>Admin</h5>
 		</sec:authorize>
 		<sec:authorize access ="hasRole('ROLE_USER')">
-		 <h5>Bonjour User</h5>
+		 <h5>User</h5>
 		</sec:authorize>
 		<sec:authorize access ="hasRole('ROLE_PO')">
-		 <h5>Bonjour Product Owner</h5>
+		 <h5>Product Owner</h5>
 		</sec:authorize>
 		<sec:authorize access ="hasRole('ROLE_BANKER')">
-		 <h5>Bonjour Banquier</h5>
+		 <h5>Banquier</h5>
 		</sec:authorize>
 		<sec:authorize access ="hasRole('ROLE_CUSTOMER')">
-		 <h5>Bonjour Entreprise</h5>
+		 <h5>Entreprise</h5>
 		</sec:authorize>
