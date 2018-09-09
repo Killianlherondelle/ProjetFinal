@@ -25,6 +25,7 @@
 			<thead class="thead-light">
 				<tr>
 					<th><spring:message code="entities.finance.code" /></th>
+					<th><spring:message code="entities.firm.dateRecording" /></th>
 					<th><spring:message code="entities.firm.name" /></th>
 					<th><spring:message code="entities.finance.perfplus" /></th>
 				
@@ -34,6 +35,7 @@
 				<c:forEach items="${finances}" var="finance">
 						<tr>
 						<td>${finance.code}</td>
+						<td>${finance.dateRecording}</td> 
 						<td>${finance.firm.name}</td> 
 						<td>${finance.perfplus}</td>
 						

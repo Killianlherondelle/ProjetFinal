@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title><spring:message code="entities.finance.list.ba.title" /></title>
+<title><spring:message code="home.title" /></title>
 <c:import url="commonsHead.jsp" />
 </head>
 <body>
@@ -18,32 +18,9 @@
 <div class="container-fluid">
 	<h1 class="text-primary">
 		
-<spring:message code="entities.finance.list.ba.title" /> 
+<spring:message code="home.title" /> 
 	</h1>
-	<div class="table-responsive">
-		<table class="table table-hover">
-			<thead class="thead-light">
-				<tr>
-					<th><spring:message code="entities.finance.code" /></th>
-					<th><spring:message code="entities.firm.dateRecording" /></th>
-					<th><spring:message code="entities.firm.name" /></th>
-					<th><spring:message code="entities.finance.perfplus" /></th>
-				
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${finances}" var="finance">
-						<tr>
-						<td>${finance.code}</td>
-						<td>${finance.dateRecording}</td> 
-						<td>${finance.firm.name}</td>
-						<td>${finance.perfplus}</td>
-						
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
+	
 </div>
 
 

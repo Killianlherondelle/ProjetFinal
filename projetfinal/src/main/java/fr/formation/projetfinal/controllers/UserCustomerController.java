@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.formation.projetfinal.dto.FirmItemDTO;
 import fr.formation.projetfinal.dto.UserCustomerDTO;
+import fr.formation.projetfinal.entities.Firm;
 import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.services.IFirmService;
 import fr.formation.projetfinal.services.IUserService;
@@ -42,7 +43,7 @@ public class UserCustomerController extends BaseController {
 		populateModel(model);
 		if (validateAndSave(userCustomerDTO, result)) {
 			model.addAttribute("user", new UserCustomerDTO());
-			return "redirect:/security/login";
+			return "redirect:/list/list";
 		}
 		return "userCustomerCreate";
 	}
@@ -78,6 +79,10 @@ public class UserCustomerController extends BaseController {
 	private void validate(UserCustomerDTO userCustomerDTO, BindingResult result) {
 		if (!userService.validateEmail(userCustomerDTO)) {
 			result.rejectValue("email", "error.entities.user.duplicateEmail");
+		}
+		Long firmId = userCustomerDTO.getFirmId();
+		if (firmId.equals(Long.valueOf(0L))) {
+		    result.rejectValue("firmId", "error.commons.required");
 		}
 	}
 

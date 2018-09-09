@@ -42,7 +42,7 @@ public class UserCollabController extends BaseController {
 		populateModel(model);
 		if (validateAndSave(userCollabDTO, result)) {
 			model.addAttribute("user", new UserCollabDTO());// reset
-			return "redirect:/security/login";
+			return "redirect:/list/list";
 		}
 		return "userCollabCreate";
 	}

@@ -25,7 +25,7 @@
 							<form:option value="0"><spring:message code="commons.forms.select" /></form:option>
 							<form:options items="${emails}" itemValue="id" itemLabel="label" />
 						</form:select>
-<%-- 						<form:errors element="div" path="collabId" cssClass="invalid-feedback" /> --%>
+
 						<form:errors element="div" path="collabId" cssClass="invalid-feedback" />
 					</div>
 					

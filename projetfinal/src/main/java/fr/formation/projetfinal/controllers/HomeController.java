@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/welcome")
 public class HomeController {
 
-	@GetMapping("/login")
+	@GetMapping("/home")
 	public String welcome() {
-		return "login";
+		return "home";
 	}
 
 }

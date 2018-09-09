@@ -37,12 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/security/login", "/users/toCreate",
 			"/users/create", "/static/**")
 		.permitAll()
-		//désactiver la sécurité en mettant comment sur cette ligne:
+		//dï¿½sactiver la sï¿½curitï¿½ en mettant comment sur cette ligne:
 		.anyRequest().authenticated()
 		.and().formLogin()
 		.loginPage("/security/login").loginProcessingUrl("/login")
 		// en cas de succÃ¨s de login, dirige vers:
-		.defaultSuccessUrl("/users/toCreate", true)
+		.defaultSuccessUrl("/welcome/home", true)
 		// en cas d'Ã©chec d'authentification:
 		.failureUrl("/security/login?error=true").permitAll().and()
 		.logout().invalidateHttpSession(true)

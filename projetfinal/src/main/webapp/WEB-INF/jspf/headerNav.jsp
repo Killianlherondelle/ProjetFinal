@@ -7,13 +7,13 @@
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <!-- Brand/logo -->
-  <a class="navbar-brand" href="#">SodiBank</a>
+  <a class="navbar-brand" href="<c:url value="/welcome/home" />">SodiBank</a>
   
   <!-- Links -->
   <ul class="navbar-nav">
-    <li class="nav-item">
-      	<li class="nav-item"><a class="nav-link" href="<c:url value="/security/login" />"><spring:message code="login.title" /></a></li>
-    </li>
+<!--     <li class="nav-item"> -->
+<%--       	<li class="nav-item"><a class="nav-link" href="<c:url value="/security/login" />"><spring:message code="login.title" /></a></li> --%>
+<!--     </li> -->
     
     <li class="nav-item">
       <li class="nav-item"><a class="nav-link" href="<c:url value="/users/toCreate" />"><spring:message code="entities.user.create.title" /></a></li>
