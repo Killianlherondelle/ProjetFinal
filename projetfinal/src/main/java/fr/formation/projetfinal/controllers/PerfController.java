@@ -40,17 +40,18 @@ public class PerfController extends BaseController {
 
 	@PostMapping("/update")
 	public String update(@Valid @ModelAttribute("perf") Perf perf, BindingResult result, Model model) {
-		perf.setId(getUser().getId());
+		perf.setId(1L);
 		if (validateAndSave(perf, result)) {
-			return "perfParam";
+			return "redirect:/listpo/list";
 		}
-		
+
 		return "perfParam";
 	}
 
 	private boolean validateAndSave(Perf perf, BindingResult result) {
 //		validate(perf, result);
 		if (!result.hasErrors()) {
+			
 			perfService.save(perf);
 			return true;
 		}
