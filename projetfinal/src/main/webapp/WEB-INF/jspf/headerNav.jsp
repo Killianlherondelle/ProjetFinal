@@ -39,6 +39,11 @@
     </li>
     
     </sec:authorize>
+    <sec:authorize access="hasRole('ROLE_BANKER')">
+     <li class="nav-item">
+      	<li class="nav-item"><a class="nav-link" href="<c:url value="/listba/list" />"><spring:message code="entities.finance.list.po.title.short" /></a></li>
+    </li>
+    </sec:authorize>
     <sec:authorize access="hasRole('ROLE_CUSTOMER')">
        <li class="nav-item">
       	<li class="nav-item"><a class="nav-link" href="<c:url value="/finances/toCreate" />"><spring:message code="finances.title" /></a></li>

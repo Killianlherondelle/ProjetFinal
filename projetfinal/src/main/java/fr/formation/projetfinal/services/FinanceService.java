@@ -1,7 +1,5 @@
 package fr.formation.projetfinal.services;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
@@ -109,6 +107,9 @@ public class FinanceService implements IFinanceService {
 	@Override
 	public List<FinancePODTO> findAllForPOAsDTO(AppLanguage appLanguage) {
 		return financeRepository.findAllForPOAsDTO(appLanguage);
+	}
+	public List<FinancePODTO> findAllForBankerAsDTO(Long userId) {
+		return financeRepository.findAllForBankerAsDTO(userId);
 	}
 
 }

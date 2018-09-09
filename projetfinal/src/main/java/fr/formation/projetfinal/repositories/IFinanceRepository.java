@@ -8,5 +8,6 @@ import fr.formation.projetfinal.dto.FinancePODTO;
 public interface IFinanceRepository {
 	
 	public List<FinancePODTO> findAllForPOAsDTO(AppLanguage lang);
+	public List<FinancePODTO> findAllForBankerAsDTO(Long userId);
 
 }

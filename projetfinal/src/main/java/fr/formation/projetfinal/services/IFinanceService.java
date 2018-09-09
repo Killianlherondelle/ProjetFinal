@@ -22,6 +22,8 @@ public interface IFinanceService {
 	public BigDecimal calculatePerfPlus(Finances finance, Perf perf, Firm firm);
 	
 	public List<FinancePODTO> findAllForPOAsDTO(AppLanguage appLanguage);
+	
+	public List<FinancePODTO> findAllForBankerAsDTO(Long userId);
     
 
 
