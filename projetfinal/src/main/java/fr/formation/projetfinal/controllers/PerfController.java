@@ -42,7 +42,7 @@ public class PerfController extends BaseController {
 	public String update(@Valid @ModelAttribute("perf") Perf perf, BindingResult result, Model model) {
 		perf.setId(1L);
 		if (validateAndSave(perf, result)) {
-			return "redirect:/listpo/list";
+			return "perfParam";
 		}
 
 		return "perfParam";
