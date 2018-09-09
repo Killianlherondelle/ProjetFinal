@@ -10,7 +10,7 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	<!-- Brand/logo -->
 	<a class="navbar-brand" href="<c:url value="/welcome/home" />">
-	<img src="<c:url value="/static/images/sodi2.png" />" alt="S" style="width:7.5%;  margin-bottom:0.5em;
+	<img src="<c:url value="/static/images/sodi2.png" />" alt="S" style="width:30px;  margin-bottom:0.5em;
 	">odiBank</a>
 
 	<!-- Links -->
