@@ -40,6 +40,6 @@
 
 
 
-		<c:import url="footerNav.jsp" />
+
 </body>
 </html>

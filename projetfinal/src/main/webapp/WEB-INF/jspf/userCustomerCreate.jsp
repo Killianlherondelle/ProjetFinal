@@ -60,6 +60,6 @@
 			</form:form>
 		</section>
 	</div>
-	<c:import url="footerNav.jsp" />
+
 </body>
 </html>
