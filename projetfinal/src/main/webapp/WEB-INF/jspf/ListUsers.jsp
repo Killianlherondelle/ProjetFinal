@@ -17,8 +17,7 @@
 
 <div class="container-fluid">
 	<h1 class="text-primary">
-		Liste des utilisateurs
-<%-- 		<spring:message code="home.welcome.user" /> --%>
+		<spring:message code="list.title" />
 	</h1>
 	<div class="table-responsive">
 		<table class="table table-hover">
@@ -32,13 +31,7 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${users}" var="user">
-<%-- 						<c:if test="${user.enabled}"> --%>
-<!-- 							<h3 class="success"> -->
-<!-- 								COUOCU -->
-<!-- 							</h3> -->
-<%-- 						</c:if> --%>
-
-						<tr>
+					<tr>
 						<td>${user.lastName}</td>
 						<td>${user.email}</td> 
 						<td>${user.role}</td>

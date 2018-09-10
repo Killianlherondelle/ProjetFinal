@@ -33,12 +33,11 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${finances}" var="finance">
-						<tr>
+					<tr>
 						<td>${finance.code}</td>
 						<td>${finance.dateRecording}</td> 
 						<td>${finance.firm.name}</td> 
 						<td>${finance.perfplus}</td>
-						
 					</tr>
 				</c:forEach>
 			</tbody>
