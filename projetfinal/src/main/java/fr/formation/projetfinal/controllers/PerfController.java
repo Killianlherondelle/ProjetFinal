@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.formation.projetfinal.entities.Perf;
 import fr.formation.projetfinal.entities.User;
@@ -31,7 +32,8 @@ public class PerfController extends BaseController {
 	
 
 	@GetMapping("/toUpdate")
-	public String toUpdate(Model model) {
+	public String toUpdate(@RequestParam(value = "success", required = false) Boolean success, Model model) {
+		model.addAttribute("success", success);
 		Perf perf = perfService.findById(1L);
 		model.addAttribute("perf", perf);
 		
@@ -42,6 +44,7 @@ public class PerfController extends BaseController {
 	public String update(@Valid @ModelAttribute("perf") Perf perf, BindingResult result, Model model) {
 		perf.setId(1L);
 		if (validateAndSave(perf, result)) {
+			model.addAttribute("success", true);
 			return "perfParam";
 		}
 

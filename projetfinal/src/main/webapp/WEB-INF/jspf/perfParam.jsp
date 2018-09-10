@@ -17,6 +17,12 @@
 			<form:form action="update" method="POST" modelAttribute="perf">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			
+					<c:if test="${success}">
+			 		<div class="alert alert-success alert-dismissible fade show">
+    				<button type="button" class="close" data-dismiss="alert">&times;</button>
+    				<strong>Succès!</strong> Le Perf+ a bien été modifié
+  					</div>
+  					</c:if>
 				
 					
 					<div class="form-row">
