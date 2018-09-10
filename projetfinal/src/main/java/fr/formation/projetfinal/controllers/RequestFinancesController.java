@@ -46,22 +46,36 @@ public class RequestFinancesController extends BaseController {
 
 	@GetMapping("/toCreate")
 	public String toCreate(@ModelAttribute("finance") Finances finance, Model model) {
-		User thisUser = getUser();
+		User thisUser = getUser();// Get the current user
 		List<Firm> firms = thisUser.getFirms();
-		if (!firms.isEmpty()) {
-			Firm firm = firms.get(0);
-			finance.setFirm(firm);// get the firm for the session and the JSP.
-		}
+		Firm firm = firms.get(0);// get the only firm he has
+		finance.setFirm(firm);// get the firm for the session and the JSP
 		populateModel(model);
 		return "RequestFinances";
 	}
 
+	/**
+	 * Tries to create and persist a finance.
+	 * If it's ok, redirects to "toCreate" url,
+	 * if not, populate and returns the same JSP.
+	 * 
+	 * @param finance
+	 * @param result
+	 * @param model
+	 * @return appropriate JSP
+	 */
 	@PostMapping("/create")
 	public String create(@Valid @ModelAttribute("finance") Finances finance, BindingResult result, Model model) {
 		if (validateAndSave(finance, result)) {
 			Finances newFinance = new Finances();
-			model.addAttribute("finance", newFinance);
+			model.addAttribute("finance", newFinance);// reset
+			return "redirect:/finances/toCreate";
 		}
+		// in case of echec and retry, we have to add one more time the associate firm:
+		User thisUser = getUser();
+		List<Firm> firms = thisUser.getFirms();
+		Firm firm = firms.get(0);
+		finance.setFirm(firm);// get the firm for the session and the JSP
 		populateModel(model);
 		return "RequestFinances";
 	}

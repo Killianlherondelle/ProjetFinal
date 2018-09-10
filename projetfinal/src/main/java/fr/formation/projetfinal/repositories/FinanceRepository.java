@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.formation.projetfinal.AppLanguage;
 import fr.formation.projetfinal.dto.FinancePODTO;
+import fr.formation.projetfinal.dto.FinancesForCustomerDTO;
 
 @Repository
 public class FinanceRepository extends BaseRepository implements IFinanceRepository {
@@ -16,7 +17,7 @@ public class FinanceRepository extends BaseRepository implements IFinanceReposit
 	public List<FinancePODTO> findAllForPOAsDTO(AppLanguage lang) {
 		StringBuilder queryBuilder = new StringBuilder(
 				"select new fr.formation.projetfinal.dto.FinancePODTO(f.id, f.code, f.firm, f.perfPlus, f.dateRecording) from Finances f");
-				queryBuilder.append(" order by dateRecording");
+		queryBuilder.append(" order by dateRecording");
 		Query query = em.createQuery(queryBuilder.toString());
 		return query.getResultList();
 	}
@@ -34,5 +35,21 @@ public class FinanceRepository extends BaseRepository implements IFinanceReposit
 		return query.getResultList();
 	}
 
-	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.formation.projetfinal.repositories.IFinanceRepository#
+	 * findAllFinancesForCustomerFirmAsDTO(fr.formation.projetfinal.AppLanguage,
+	 * java.lang.Long)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<FinancesForCustomerDTO> findAllFinancesForCustomerFirmAsDTO(AppLanguage lang, Long firm_id) {
+		StringBuilder queryBuilder = new StringBuilder(
+				"select new fr.formation.projetfinal.dto.FinancesForCustomerDTO(f.id, f.code, f.amount, f.perfPlus, f.firm.id, f.dateRecording) from Finances f where f.firm.id = :firm_id order by f.dateRecording");
+		Query query = em.createQuery(queryBuilder.toString());
+		query.setParameter("firm_id", firm_id);// completes the query with de dynamic param.
+		return query.getResultList();
+	}
+
 }

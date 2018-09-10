@@ -65,6 +65,9 @@
 			<li class="nav-item"><a class="nav-link"
 				href="<c:url value="/finances/toCreate" />"><spring:message
 						code="finances.title" /></a></li>
+						<li class="nav-item"><a class="nav-link"
+				href="<c:url value="/listfinancesforcustomer/listdisplay" />"><spring:message
+						code="entities.finance.list.po.title.short" /></a></li>
 
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
