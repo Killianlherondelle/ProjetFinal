@@ -19,6 +19,7 @@ import fr.formation.projetfinal.dto.ValueDTO;
 import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.services.ICollabService;
 import fr.formation.projetfinal.services.IUserService;
+
 @Secured({ "ROLE_PO", "ROLE_ADMIN" })
 @Controller
 @RequestMapping("/usercollab")
@@ -77,7 +78,10 @@ public class UserCollabController extends BaseController {
 	}
 
 	private void validate(UserCollabDTO userCollabDTO, BindingResult result) {
-		if (!userService.validateCollabEmail(userCollabDTO)) {
+		Long collabId = userCollabDTO.getCollabId();
+		if (collabId.equals(Long.valueOf(0L))) {
+			result.rejectValue("collabId", "error.commons.required");
+		} else if (!userService.validateCollabEmail(userCollabDTO)) {
 			result.rejectValue("collabId", "error.entities.user.duplicateEmail");
 		}
 	}
