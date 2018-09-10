@@ -6,17 +6,17 @@
 
 
 		<sec:authorize access ="hasRole('ROLE_ADMIN')">
-		 <h5>Admin</h5>
+		 <h5><spring:message code="entities.role.admin" /></h5>
 		</sec:authorize>
 		<sec:authorize access ="hasRole('ROLE_USER')">
-		 <h5>User</h5>
+		  <h5><spring:message code="entities.role.user" /></h5>
 		</sec:authorize>
 		<sec:authorize access ="hasRole('ROLE_PO')">
-		 <h5>Product Owner</h5>
+		 <h5><spring:message code="entities.role.po" /></h5>
 		</sec:authorize>
 		<sec:authorize access ="hasRole('ROLE_BANKER')">
-		 <h5>Banquier</h5>
+		 <h5><spring:message code="entities.role.banker" /></h5>
 		</sec:authorize>
 		<sec:authorize access ="hasRole('ROLE_CUSTOMER')">
-		 <h5>Entreprise</h5>
+		 <h5><spring:message code="entities.role.enterprise" /></h5>
 		</sec:authorize>

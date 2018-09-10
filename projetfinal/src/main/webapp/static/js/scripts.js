@@ -17,7 +17,8 @@ $(function() {
 		showMonthAfterYear : false,
 		yearSuffix : '',
 		changeMonth : true,
-		changeYear : true
+		changeYear : true,
+		minDate: 1
 	};
 	
 	$.datepicker.regional['en'] = {

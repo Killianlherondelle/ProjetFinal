@@ -14,6 +14,14 @@
 			<h1 class="text-primary">
 				<spring:message code="login.title" />
 			</h1>
+			
+			<c:if test="${error}">
+			 <div class="alert alert-danger alert-dismissible fade show">
+    			<button type="button" class="close" data-dismiss="alert">&times;</button>
+    			<strong>Erreur!</strong> Login ou mot de passe incorrecte
+  			</div>
+  			</c:if>
+  			
 			<form method="POST" action="<c:url value="/login" />">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="form-group">

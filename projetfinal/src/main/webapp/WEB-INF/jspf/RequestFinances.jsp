@@ -61,13 +61,14 @@
 					<div class="form-group col">
 					<form:label path="monthDuration"><spring:message code="entities.finance.monthDuration" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
 						<div class="input-group">
-							<form:input path="monthDuration" maxlength="50" cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" lang="fr"  />
+							<form:input path="monthDuration" maxlength="50" value=" " cssClass="form-control" cssErrorClass="form-control is-invalid" autocomplete="off" />
 							<form:errors element="div" path="monthDuration" cssClass="invalid-feedback" />
 					</div></div>
-						
+					
+					<spring:message code="commons.formats.date" var="datePattern" />
 					<div class="form-group col">
 						<form:label path="startDate"><spring:message code="entities.finance.startDate" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>
-						<form:input path="startDate" maxlength="10" placeHolder="${datePattern}" cssClass="form-control datepicker" cssErrorClass="form-control datepicker is-invalid" autocomplete="off" lang="fr" />
+						<form:input path="startDate" maxlength="10" placeHolder="${datePattern}" cssClass="form-control datepicker" cssErrorClass="form-control datepicker is-invalid" autocomplete="off" />
 						<form:errors element="div" path="startDate" cssClass="invalid-feedback" />
 					</div>
 				

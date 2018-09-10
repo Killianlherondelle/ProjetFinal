@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import fr.formation.projetfinal.dto.UserCollabDTO;
 import fr.formation.projetfinal.dto.ValueDTO;
+import fr.formation.projetfinal.entities.Collaborator;
 import fr.formation.projetfinal.entities.User;
 import fr.formation.projetfinal.services.ICollabService;
 import fr.formation.projetfinal.services.IUserService;
@@ -41,9 +42,9 @@ public class UserCollabController extends BaseController {
 	public String create(@Valid @ModelAttribute("user") UserCollabDTO userCollabDTO, BindingResult result,
 			Model model) {
 		populateModel(model);
-		if (validateAndSave(userCollabDTO, result)) {
+		if (validateAndSave(userCollabDTO, result, model)) {
 			model.addAttribute("user", new UserCollabDTO());// reset
-			return "redirect:/list/list";
+			return "redirect:userCollabCreate";
 		}
 		return "userCollabCreate";
 	}
@@ -60,23 +61,33 @@ public class UserCollabController extends BaseController {
 	public String update(@Valid @ModelAttribute("user") UserCollabDTO userCollabDTO, BindingResult result,
 			Model model) {
 		userCollabDTO.setCollabId(getUser().getId());
-		if (validateAndSave(userCollabDTO, result)) {
+		if (validateAndSave(userCollabDTO, result, model)) {
 			return "redirect:/home/welcome";
 		}
 		populateModel(model);
 		return "userUpdate";// TODO
 	}
 
-	private boolean validateAndSave(UserCollabDTO userCollabDTO, BindingResult result) {
+	
+	
+	
+	
+	private boolean validateAndSave(UserCollabDTO userCollabDTO, BindingResult result, Model model) {
 		validate(userCollabDTO, result);
 
 		if (!result.hasErrors()) {
 			userService.saveCollab(userCollabDTO);
+			model.addAttribute("success", true);
 			return true;
 		}
 		return false;
 	}
 
+	
+	
+	
+	
+	
 	private void validate(UserCollabDTO userCollabDTO, BindingResult result) {
 		Long collabId = userCollabDTO.getCollabId();
 		if (collabId.equals(Long.valueOf(0L))) {
@@ -91,4 +102,7 @@ public class UserCollabController extends BaseController {
 		model.addAttribute("emails", emails);
 		model.addAttribute("roles", User.Role.rolesCollab());
 	}
+	
+	
+
 }
