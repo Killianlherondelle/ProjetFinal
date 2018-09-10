@@ -26,7 +26,7 @@
 				<tr>
 					<th><spring:message code="entities.finance.code" /></th>
 					<th><spring:message code="entities.firm.dateRecording" /></th>
-					<th><spring:message code="entities.finance.perfplus" /></th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -34,7 +34,7 @@
 					<tr>
 						<td>${finance.code}</td>
 						<td>${finance.dateRecording}</td> 
-						<td>${finance.perfPlus}</td>
+
 					</tr>
 				</c:forEach>
 			</tbody>
