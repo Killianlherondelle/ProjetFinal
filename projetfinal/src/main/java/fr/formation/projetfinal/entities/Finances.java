@@ -43,7 +43,7 @@ public class Finances implements Serializable {
 	@NotNull(message = "{error.commons.required}")
 	@Positive(message = "{error.commons.positive}")
 	@Column(length = 100, nullable = false)
-	private int monthDuration;
+	private Integer monthDuration;
 
 	@NotNull(message = "{error.commons.required}")
 	@Column(length = 1000, nullable = false)
@@ -61,6 +61,18 @@ public class Finances implements Serializable {
 	@Convert(converter = BooleanConverter.class)
 	@Column(length = 1, nullable = false)
 	public boolean state = true;
+
+	public Finances() {
+		// empty constructor
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public BigDecimal getPerfPlus() {
 		return perfPlus;
@@ -80,17 +92,6 @@ public class Finances implements Serializable {
 
 	@Column(length = 100, nullable = false)
 	private LocalDate dateRecording;
-
-	public Finances() {
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getCode() {
 		return code;
@@ -116,11 +117,11 @@ public class Finances implements Serializable {
 		this.currency = currency;
 	}
 
-	public int getMonthDuration() {
+	public Integer getMonthDuration() {
 		return monthDuration;
 	}
 
-	public void setMonthDuration(int monthDuration) {
+	public void setMonthDuration(Integer monthDuration) {
 		this.monthDuration = monthDuration;
 	}
 
