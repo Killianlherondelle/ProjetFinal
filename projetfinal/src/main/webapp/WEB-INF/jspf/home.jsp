@@ -10,20 +10,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><spring:message code="home.title" /></title>
 <c:import url="commonsHead.jsp" />
+<style>body, html {
+    height: 100%;
+/*     background-color: #343a40!important; */
+}
+
+.bg { 
+    /* The image used */
+    background-image: url("<c:url value="/static/images/bg.jpg" />");
+
+    /* Full height */
+    height: 70%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
 </head>
 <body>
 <c:import url="headerNav.jsp" />
-<c:import url="role.jsp" />
 
-<div class="container-fluid">
-	<h1 class="text-primary">
-		
-<spring:message code="home.title" /> 
-	</h1>
-	
+
+<div class="bg">
+	<c:import url="role.jsp" />
+	<div class="container-fluid">
+		<h1 class="text-primary">
+			<spring:message code="home.title" /> 
+		</h1>
+	</div>
 </div>
-
-
 
 
 
