@@ -8,7 +8,7 @@
 <html lang="${pageContext.response.locale.language}">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title><spring:message code="list.title" /></title>
+<title><spring:message code="entities.finance.create.request" /></title>
 <c:import url="commonsHead.jsp" />
 </head>
 <body>
@@ -17,7 +17,7 @@
 
 <div class="container-fluid">
 		<section>
-			<h1 class="text-primary"></h1>
+			<h1 class="text-primary"><spring:message code="entities.finance.create.request" /></h1>
 			<form:form action="create" method="POST" modelAttribute="finance">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<form:hidden path="firm.id"/>
