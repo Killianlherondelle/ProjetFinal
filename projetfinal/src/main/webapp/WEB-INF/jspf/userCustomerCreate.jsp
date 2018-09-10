@@ -17,12 +17,6 @@
 			<form:form action="create" method="POST" modelAttribute="user">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			
-			<c:if test="${success}">
-			 <div class="alert alert-danger alert-dismissible fade show">
-    			<button type="button" class="close" data-dismiss="alert">&times;</button>
-    			<strong>Success!</strong> Le Collaborateur à bien été crée
-  			</div>
-  			</c:if>
   			
 			
 				<div class="form-row">

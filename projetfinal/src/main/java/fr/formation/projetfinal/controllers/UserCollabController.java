@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.formation.projetfinal.dto.UserCollabDTO;
 import fr.formation.projetfinal.dto.ValueDTO;
@@ -33,22 +34,30 @@ public class UserCollabController extends BaseController {
 
 	@SuppressWarnings("unused")
 	@GetMapping("/toCreate")
-	public String toCreate(@ModelAttribute("user") UserCollabDTO userCollabDTO, Model model) {
+	public String toCreate(@RequestParam(value = "success", required = false) Boolean success,@ModelAttribute("user") UserCollabDTO userCollabDTO, Model model) {
+		model.addAttribute("success", success);
 		populateModel(model);
 		return "userCollabCreate";
 	}
+	
+	
 
 	@PostMapping("/create")
 	public String create(@Valid @ModelAttribute("user") UserCollabDTO userCollabDTO, BindingResult result,
 			Model model) {
 		populateModel(model);
+		
 		if (validateAndSave(userCollabDTO, result, model)) {
 			model.addAttribute("user", new UserCollabDTO());// reset
-			return "redirect:userCollabCreate";
+			model.addAttribute("success", true);
+			return "redirect:/usercollab/toCreate";
 		}
 		return "userCollabCreate";
 	}
 
+	
+	
+	
 	@GetMapping("/toUpdate")
 	public String toUpdate(Model model) {
 		User user = userService.findById(getUser().getId());
@@ -75,9 +84,8 @@ public class UserCollabController extends BaseController {
 	private boolean validateAndSave(UserCollabDTO userCollabDTO, BindingResult result, Model model) {
 		validate(userCollabDTO, result);
 
-		if (!result.hasErrors()) {
+		if (!result.hasErrors()) {	
 			userService.saveCollab(userCollabDTO);
-			model.addAttribute("success", true);
 			return true;
 		}
 		return false;
@@ -95,12 +103,14 @@ public class UserCollabController extends BaseController {
 		} else if (!userService.validateCollabEmail(userCollabDTO)) {
 			result.rejectValue("collabId", "error.entities.user.duplicateEmail");
 		}
+		
 	}
 
 	private void populateModel(Model model) {
 		List<ValueDTO> emails = collabService.findAllAsDTO();
 		model.addAttribute("emails", emails);
 		model.addAttribute("roles", User.Role.rolesCollab());
+	
 	}
 	
 	
