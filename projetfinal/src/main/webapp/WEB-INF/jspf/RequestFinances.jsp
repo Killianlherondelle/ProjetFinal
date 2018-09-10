@@ -25,6 +25,13 @@
 <%-- 						<form:label path="firm.name">Votre entreprise:</form:label> --%>
 <%-- 						<form:input path="firm.name" maxlength="30" cssClass="form-control" disabled="true" autocomplete="off" /> --%>
 <!-- 					</div> -->
+
+					<c:if test="${success}">
+			 		<div class="alert alert-success alert-dismissible fade show">
+    				<button type="button" class="close" data-dismiss="alert">&times;</button>
+    				<strong>succès!</strong> votre demande de financement a bien été prise en compte
+  					</div>
+  					</c:if>
 					
 					<div class="form-group col">
 						<form:label path="code"><spring:message code="entities.finance.code" /><span class="text-danger"><spring:message code="commons.symbols.required" /></span></form:label>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.formation.projetfinal.dto.FinancesTypeDTO;
 import fr.formation.projetfinal.dto.CurrencyDTO;
@@ -45,7 +46,8 @@ public class RequestFinancesController extends BaseController {
 	}
 
 	@GetMapping("/toCreate")
-	public String toCreate(@ModelAttribute("finance") Finances finance, Model model) {
+	public String toCreate(@RequestParam(value = "success", required = false) Boolean success, @ModelAttribute("finance") Finances finance, Model model) {
+		model.addAttribute("success", success);
 		User thisUser = getUser();// Get the current user
 		List<Firm> firms = thisUser.getFirms();
 		Firm firm = firms.get(0);// get the only firm he has
@@ -69,6 +71,7 @@ public class RequestFinancesController extends BaseController {
 		if (validateAndSave(finance, result)) {
 			Finances newFinance = new Finances();
 			model.addAttribute("finance", newFinance);// reset
+			model.addAttribute("success", true);
 			return "redirect:/finances/toCreate";
 		}
 		// in case of echec and retry, we have to add one more time the associate firm:

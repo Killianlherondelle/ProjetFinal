@@ -17,6 +17,12 @@
 			<form:form action="create" method="POST" modelAttribute="user">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			
+					<c:if test="${success}">
+			 		<div class="alert alert-success alert-dismissible fade show">
+    				<button type="button" class="close" data-dismiss="alert">&times;</button>
+    				<strong>succès!</strong> Le Customer a bien été créé
+  					</div>
+  					</c:if>
   			
 			
 				<div class="form-row">

@@ -20,7 +20,7 @@
 					<c:if test="${success}">
 			 		<div class="alert alert-success alert-dismissible fade show">
     				<button type="button" class="close" data-dismiss="alert">&times;</button>
-    				<strong>Success!</strong> Le Collaborateur à bien été crée
+    				<strong>succès!</strong> Le Collaborateur a bien été créé
   					</div>
   					</c:if>
 			

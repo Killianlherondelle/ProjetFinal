@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.formation.projetfinal.dto.FirmItemDTO;
 import fr.formation.projetfinal.dto.UserCustomerDTO;
@@ -32,7 +33,8 @@ public class UserCustomerController extends BaseController {
 
 	@SuppressWarnings("unused")
 	@GetMapping("/toCreate")
-	public String toCreate(@ModelAttribute("user") UserCustomerDTO userCustomerDTO, Model model) {
+	public String toCreate(@RequestParam(value = "success", required = false) Boolean success, @ModelAttribute("user") UserCustomerDTO userCustomerDTO, Model model) {
+		model.addAttribute("success", success);
 		populateModel(model);
 		return "userCustomerCreate";
 	}
@@ -43,7 +45,8 @@ public class UserCustomerController extends BaseController {
 		populateModel(model);
 		if (validateAndSave(userCustomerDTO, result)) {
 			model.addAttribute("user", new UserCustomerDTO());
-			return "redirect:/list/list";
+			model.addAttribute("success", true);
+			return "redirect:/usercust/toCreate";
 		}
 		return "userCustomerCreate";
 	}
