@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fr.formation.projetfinal.AppLanguage;
 import fr.formation.projetfinal.dto.FinancePODTO;
+import fr.formation.projetfinal.dto.FinancesForCustomerDTO;
 import fr.formation.projetfinal.dto.ValueDTO;
 import fr.formation.projetfinal.entities.Country;
 import fr.formation.projetfinal.entities.Finances;
@@ -26,12 +27,12 @@ public class FinanceService implements IFinanceService {
 	private final IPerfService perfService;
 
 	private final IFirmService firmService;
-	
+
 	private final IFinanceRepository financeRepository;
 
 	@Autowired
-	public FinanceService(IFinanceJpaRepository financeJpaRepository, 
-			IPerfService perfService,  IFirmService firmService, IFinanceRepository financeRepository) {
+	public FinanceService(IFinanceJpaRepository financeJpaRepository, IPerfService perfService,
+			IFirmService firmService, IFinanceRepository financeRepository) {
 		this.financeJpaRepository = financeJpaRepository;
 		this.financeRepository = financeRepository;
 		this.perfService = perfService;
@@ -108,6 +109,19 @@ public class FinanceService implements IFinanceService {
 	public List<FinancePODTO> findAllForPOAsDTO(AppLanguage appLanguage) {
 		return financeRepository.findAllForPOAsDTO(appLanguage);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.formation.projetfinal.services.IFinanceService#
+	 * findAllFinancesForCustomerFirmAsDTO(fr.formation.projetfinal.AppLanguage,
+	 * java.lang.Long)
+	 */
+	@Override
+	public List<FinancesForCustomerDTO> findAllFinancesForCustomerFirmAsDTO(AppLanguage lang, Long firm_id) {
+		return financeRepository.findAllFinancesForCustomerFirmAsDTO(lang, firm_id);
+	}
+
 	public List<FinancePODTO> findAllForBankerAsDTO(Long userId) {
 		return financeRepository.findAllForBankerAsDTO(userId);
 	}
