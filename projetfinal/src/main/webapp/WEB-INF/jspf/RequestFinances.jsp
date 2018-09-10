@@ -21,11 +21,6 @@
 			<form:form action="create" method="POST" modelAttribute="finance">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<form:hidden path="firm.id"/>
-<!-- 					<div class="form-group col"> -->
-<%-- 						<form:label path="firm.name">Votre entreprise:</form:label> --%>
-<%-- 						<form:input path="firm.name" maxlength="30" cssClass="form-control" disabled="true" autocomplete="off" /> --%>
-<!-- 					</div> -->
-
 					<c:if test="${success}">
 			 		<div class="alert alert-success alert-dismissible fade show">
     				<button type="button" class="close" data-dismiss="alert">&times;</button>
