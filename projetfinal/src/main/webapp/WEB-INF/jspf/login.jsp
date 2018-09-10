@@ -18,7 +18,7 @@
 			<c:if test="${error}">
 			 <div class="alert alert-danger alert-dismissible fade show">
     			<button type="button" class="close" data-dismiss="alert">&times;</button>
-    			<strong>Erreur!</strong> Login ou mot de passe incorrecte
+    			<strong>Erreur!</strong> Email ou mot de passe incorrect
   			</div>
   			</c:if>
   			
