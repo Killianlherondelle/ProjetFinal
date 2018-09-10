@@ -18,9 +18,9 @@
 
 
 
-		<li class="nav-item"><a class="nav-link"
-			href="<c:url value="/users/toCreate" />"><spring:message
-					code="entities.user.create.title" /></a></li>
+<!-- 		<li class="nav-item"><a class="nav-link" -->
+<%-- 			href="<c:url value="/users/toCreate" />"><spring:message --%>
+<%-- 					code="entities.user.create.title" /></a></li> --%>
 
 
 		<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_PO')">

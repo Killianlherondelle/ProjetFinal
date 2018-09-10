@@ -34,8 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	filter.setForceEncoding(true);
 	http.addFilterBefore(filter, CsrfFilter.class);
 	http.authorizeRequests()
-		.antMatchers("/security/login", "/users/toCreate",
-			"/users/create", "/static/**")
+		.antMatchers("/security/login",
+				//"/users/toCreate", "/users/create",
+				"/static/**")
 		.permitAll()
 		//d�sactiver la s�curit� en mettant comment sur cette ligne:
 		.anyRequest().authenticated()
